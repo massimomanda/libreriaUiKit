@@ -13,3 +13,5 @@ export * from './lib/components/round-button/round-button.component';
 export * from './lib/components/toast/toast.component';
 
 export * from './lib/components/input/input.component';
+
+export * from './lib/components/textarea/textarea.component';
