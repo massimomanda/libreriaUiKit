@@ -1,0 +1,26 @@
+@keyframes saluta {
+    0% { transform:  rotate(0deg); }
+    40% { transform: rotate(5deg); }
+    60% { transform: rotate(-5deg); }
+    80% { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .saluta{
+    animation: saluta 0.8s infinite;
+    transform-origin: bottom right;
+  }
+  #imgHello {
+    width: 33px;
+    height: 33px;
+    margin-right: 20px;
+  }
+  #welcome-wrapper {
+    display: flex;
+  }
+  #header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;  
+  }

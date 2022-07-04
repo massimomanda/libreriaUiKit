@@ -1,0 +1,31 @@
+div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    pointer-events: none;
+}
+
+button {
+
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* img {
+    width: 23px;
+    height: 25px;
+
+} */
+
+
+p{
+    margin-top: 5px;
+    text-align: center;
+} 
