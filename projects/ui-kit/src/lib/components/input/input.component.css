@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap');
 
+#input-wrapper {
+    position: relative;
+}
 
 div {
     display: flex;
@@ -9,48 +11,28 @@ div {
 }
 
 label {
-
-    font-family: 'Hind Madurai';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
     align-items: center;
     color: #000000;
     left: 5px;
 }
 
 input {
-
-    font-family: 'Hind Madurai';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    box-sizing: border-box;
     width: 100%;
     height: inherit;
     margin-top: 10px;
-    /* border: 1px solid var(--border-color); */
-    /* border-color: red; */
+    border: 1px solid black;
     border-radius: 10px;
-    color: var(--input-color);
+    color: black;
     padding-left: 20px;
-    /* outline: none; */
-    position: relative;
+    outline: none;
 }
 
 input::placeholder {
-    color: var(--placeholder-color);
-    font-family: 'Hind Madurai';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
+    color: black;
 }
 
 input:focus, textarea:focus {
-    /* border: 1px solid var(--bg-primary-color) */
+    border: 1px solid black;
 }
 
 :host {
@@ -58,17 +40,21 @@ input:focus, textarea:focus {
 }
 
 input.ng-invalid.ng-touched  {
-    /* border: 1px solid #EB5757; */
+    border: 1px solid #EB5757;
 }
 
+#hide-wrapper, #show-wrapper{
+    position: relative;
+}
 
 .icon-container {
     position: absolute;
-    bottom: 15px;
     left: 90%;
+    bottom: 50%;
     z-index: 10;
     width: auto;
     height: auto;
+
 }
 
 .icon-container svg {
@@ -76,12 +62,11 @@ input.ng-invalid.ng-touched  {
 }
 
 .hide-password {
-    top: -18px;
+    top: -4px;
     position: absolute;
 }
 
 .show-password{
-    top: -17px;
+    bottom: -17px;
     position: absolute;
-
 }

@@ -1,20 +1,59 @@
-<!-- <div [formGroup]="parentFormGroup">
+<div id="input-wrapper" [formGroup]="parentFormGroup">
   <ng-content></ng-content>
+
   <label [for]="for">{{ textLabel }}</label>
   <input
     (blur)="blurInput()"
     [formControlName]="controlName"
     [name]="name"
     [placeholder]="placeholder"
-    [style.backgroundColor]="backgroundInput"
-    [style.border]="border"
-    [style.fontSize]="fontSize"
-    
+    [ngStyle]="{ background: backgroundInput, height: height ?? '48px' }"
     [type]="type"
     [autocomplete]="autocomplete"
     #input
   />
 
+  <div *ngIf="showPassword" class="icon-container">
+    <div id="show-wrapper" *ngIf="showPassword && !switchIcon" (click)="onShowPasswordClicked()">
+      <span class="show-password">
+        <svg
+          width="20"
+          height="14"
+          viewBox="0 0 20 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M10 4C8.358 4 7 5.359 7 7C7 8.642 8.358 10 10 10C11.641 10 13 8.642 13 7C13 5.359 11.641 4 10 4Z"
+            fill="#003594"
+          />
+          <path
+            d="M10 0C2.408 0 0.126318 6.617 0.105431 6.684L0 7L0.104436 7.316C0.126318 7.383 2.408 14 10 14C17.592 14 19.8737 7.383 19.8946 7.316L20 7L19.8956 6.684C19.8737 6.617 17.592 0 10 0ZM10 12C4.67774 12 2.61587 8.154 2.11657 7C2.61786 5.842 4.68072 2 10 2C15.3223 2 17.3841 5.846 17.8834 7C17.3821 8.158 15.3193 12 10 12Z"
+            fill="#003594"
+          />
+        </svg>
+      </span>
+    </div>
+    <div id="hide-wrapper" *ngIf="showPassword && switchIcon" (click)="onShowPasswordClicked()">
+      <span class="hide-password"
+        ><svg
+          width="20"
+          height="19"
+          viewBox="0 0 20 19"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M2.41246 0.00170898L19.3813 16.9705L19.3831 16.9688L19.3848 16.9705L17.9706 18.3847L14.6137 15.0279C13.3568 15.6141 11.8332 16 10 16C2.408 16 0.126318 9.38296 0.104436 9.31596L0 8.99996L0.105431 8.68396C0.118626 8.64163 1.03404 5.98538 3.62047 4.03464L1 1.41417L2.41246 0.00170898ZM13.0867 13.5009L11.2895 11.7036C10.8976 11.8933 10.4599 12 10 12C8.358 12 7 10.642 7 8.99996C7 8.54008 7.10665 8.10236 7.29631 7.71048L5.03632 5.45049C3.26898 6.66588 2.41537 8.30972 2.11657 8.99996C2.61587 10.154 4.67774 14 10 14C11.184 14 12.2067 13.8096 13.0867 13.5009Z"
+            fill="#003594"
+          />
+          <path
+            d="M7.50022 2.26104C8.26109 2.09448 9.09262 1.99996 10 1.99996C17.592 1.99996 19.8737 8.61695 19.8956 8.68396L20 8.99996L19.8946 9.31596C19.8843 9.34898 19.3248 10.9731 17.8511 12.6119L16.4594 11.2202C17.2458 10.3296 17.6859 9.45633 17.8834 8.99996C17.3841 7.84596 15.3223 3.99996 10 3.99996C9.74753 3.99996 9.50239 4.00861 9.2644 4.02522L7.50022 2.26104Z"
+            fill="#003594"
+          /></svg
+      ></span>
+    </div>
+  </div>
 </div>
-
-[ngStyle]="{ 'background': backgroundInput,'border':border,'fontSize':fontSize}" -->
