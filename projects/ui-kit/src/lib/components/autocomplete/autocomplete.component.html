@@ -1,20 +1,19 @@
-<div [ngClass]="class" id="input-wrapper">
-  <ng-content></ng-content>
-
+<div [ngClass]="class" id="input-wrapper" [formGroup]="parentFormGroup">
+  
   <label [for]="for">{{ textLabel }}</label>
   <input
-    [(ngModel)]="inputValue"
-    (ngModelChange)="logInputValue()"
-    (blur)="blurInput()"
-    [placeholder]="placeholder"
-    [ngStyle]="{ background: backgroundInput, height: height ?? '48px' }"
-    [type]="type"
-    [autocomplete]="autocomplete"
-    #input
+  (blur)="blurInput()"
+  [placeholder]="placeholder"
+  [ngStyle]="{ background: backgroundInput, height: height }"
+  [type]="type"
+  [autocomplete]="autocomplete"
+  [formControlName]="controlName" [name]="name"
+  #input
   />
-  <ng-content></ng-content>
-  <div>
-      {{ inputValue }}
-  </div>
+  
+
+    <ng-content></ng-content>
+      
+
 </div>
 

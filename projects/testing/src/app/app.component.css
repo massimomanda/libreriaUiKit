@@ -6,5 +6,10 @@
 
 .input {
     width: 50%;
-    height: 50px;
+    min-height: 50px;
+}
+#result{
+ display: flex;
+ flex-direction: column;
+
 }
