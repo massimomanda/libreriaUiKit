@@ -2,12 +2,12 @@
 
   <lib-button [textButton]="'ciao'" ></lib-button>
 
-
-<lib-round-button [image]="'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'" ></lib-round-button>
-
+<lib-round-button [image]="'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'"></lib-round-button>
 
 <lib-toast [text]="'prova'" (action)="metodo()" ></lib-toast>
 
-<lib-input [placeholder]="'ciao'" ></lib-input>
+<div id="input">
+    <lib-input [type]="'password'" [placeholder]="'inserisci password'" [togglePasswordVisibility]="true"></lib-input>
+</div>
 
 <lib-textarea [textLabel]="'ciao'" [background]="'red'" [border]="'1px solid green'" [placeholder]="'vediamo un pò se esce qualcosa!'" [resize]="''"></lib-textarea>
