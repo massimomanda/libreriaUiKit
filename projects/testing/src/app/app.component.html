@@ -1,18 +1,40 @@
 <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
 
-  <lib-button [textButton]="'ciao'" ></lib-button>
+<lib-button [textButton]="'ciao'"></lib-button>
 
-<lib-round-button [image]="'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'"></lib-round-button>
+<lib-round-button
+  [image]="
+    'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'
+  "
+></lib-round-button>
 
-<lib-toast [text]="'prova'" (action)="metodo()" ></lib-toast>
+<lib-toast [text]="'prova'" (action)="metodo()"></lib-toast>
 
 <div id="input">
-    <lib-input [type]="'password'" [placeholder]="'inserisci password'" [togglePasswordVisibility]="true"></lib-input>
+  <lib-input
+  class="primary"
+    [type]="'password'"
+    [placeholder]="'inserisci password'"
+    [togglePasswordVisibility]="true"
+  ></lib-input>
 </div>
 
-<lib-toast [text]="'prova'" (action)="metodo()" ></lib-toast>
+<lib-toast [text]="'prova'" (action)="metodo()"></lib-toast>
 
-<lib-input [placeholder]="'ciao'" ></lib-input>
+<lib-input [placeholder]="'ciao'"></lib-input>
 
-<lib-checkbox  [image]="'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'" [controlName]="'sono la controllname'" [name]="'sono Name'"  [content]="'ciao'"></lib-checkbox>
-<lib-textarea [textLabel]="'ciao'" [background]="'red'" [border]="'1px solid green'" [placeholder]="'vediamo un pò se esce qualcosa!'" [resize]="''"></lib-textarea>
+<lib-checkbox
+  [image]="
+    'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'
+  "
+  [controlName]="'sono la controllname'"
+  [name]="'sono Name'"
+  [content]="'ciao'"
+></lib-checkbox>
+<lib-textarea
+  [textLabel]="'ciao'"
+  [background]="'red'"
+  [border]="'1px solid green'"
+  [placeholder]="'vediamo un pò se esce qualcosa!'"
+  [resize]="''"
+></lib-textarea>

@@ -1,4 +1,4 @@
-<div id="input-wrapper" [formGroup]="parentFormGroup">
+<div [ngClass]="class" id="input-wrapper" [formGroup]="parentFormGroup">
   <ng-content></ng-content>
 
   <label [for]="for">{{ textLabel }}</label>

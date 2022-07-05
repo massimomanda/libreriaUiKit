@@ -32,6 +32,7 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Input('autocomplete') autocomplete: string | undefined;
   @Input('togglePasswordVisibility') showPassword: boolean = false;
   @Input('switchIcon') switchIcon: boolean = false;
+  @Input('class') class!: string;
 
   constructor() {}
 

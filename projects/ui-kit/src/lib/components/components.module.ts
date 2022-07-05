@@ -8,6 +8,7 @@ import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TextareaComponent } from './textarea/textarea.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 
 
 
@@ -20,7 +21,8 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     ToastComponent,
     InputComponent,
     CheckboxComponent,
-    TextareaComponent
+    TextareaComponent,
+    AutocompleteComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,
