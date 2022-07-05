@@ -18,6 +18,15 @@ export class TextareaComponent implements OnInit {
   @Input('imgColor') imgColor: string = '';
   @Input('boxshadow') boxshadow:boolean = false;
   @Input('resize') resize: string = 'none';
+  @Input('height') height: string = '100px';
+  @Input('width') width: string = '100px';
+  @Input('padding') padding: string | undefined;
+  @Input('position') position: string | undefined;
+  @Input('border-radius') borderRadius: string | undefined;
+  @Input('outline') outline: string | undefined;
+  @Input('overflow') overflow: string | undefined;
+  
+  
 
   constructor() { }
 

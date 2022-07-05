@@ -1,6 +1,7 @@
 <div [formGroup]="parentFormGroup">
   <label [for]="for">{{ textLabel }}</label>
-  <textarea [ngStyle]="{ background: background, border: border, resize:resize }" 
+  <textarea
+    [ngStyle]="{ 'background': background, 'border': border, 'resize':resize,'height':height, 'width':width, 'padding':padding, 'position':position, 'border-radius': borderRadius, 'outline':outline, 'overflow': overflow}"
     [class.focusShadow]="boxshadow" [class.focus]="!boxshadow" [formControlName]="controlName" [name]="name"
     placeholder="{{ placeholder }}"></textarea>
   <ng-content></ng-content>
