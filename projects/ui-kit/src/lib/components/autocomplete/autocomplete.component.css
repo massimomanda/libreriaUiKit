@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap");
+
+* {
+  font-family: "Hind Madurai";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+#input-wrapper {
+  position: relative;
+  width: 100%;
+  height: inherit;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: black;
+  padding-left: 20px;
+  outline: none;
+  border: 1px solid #c6d1e4;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+label {
+  align-items: center;
+  color: #000000;
+  left: 5px;
+}
+
+input {
+  border: none;
+  height: 100%;
+  width: 95%;
+}
+
+input::placeholder {
+  color: black;
+  opacity: 0.5;
+}
+
+input:focus,
+textarea:focus {
+  border: 1px solid #808794;
+}
+
+:host {
+  height: inherit;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid #eb5757;
+}
+
+#hide-wrapper,
+#show-wrapper {
+  position: relative;
+}
+
+.icon-container {
+  position: absolute;
+  left: 98%;
+  bottom: 50%;
+  z-index: 10;
+  width: auto;
+  height: auto;
+}
+
+.icon-container svg {
+    cursor: pointer;
+}
+
+.primary {
+  fill: #003594;
+}
+
+.dark {
+  fill: black;
+}
+
+.hide-password {
+  top: -4px;
+  position: absolute;
+}
+
+.show-password {
+  bottom: -17px;
+  position: absolute;
+}
