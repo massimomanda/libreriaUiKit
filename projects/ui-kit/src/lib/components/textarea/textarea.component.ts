@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./textarea.component.css']
 })
 export class TextareaComponent implements OnInit {
-  @Input('textLabel') textLabel: string | undefined;
+  @Input('textLabel') textLabel: string='';
   @Input('placeholder') placeholder: string | undefined;
   @Input('background') background: string | undefined;
   @Input('border') border: string | undefined;
