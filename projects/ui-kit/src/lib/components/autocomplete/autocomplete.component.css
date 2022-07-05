@@ -10,6 +10,14 @@
 
 #input-wrapper {
   position: relative;
+  width: 100%;
+  height: inherit;
+  margin-top: 10px;
+  border-radius: 10px;
+  color: black;
+  padding-left: 20px;
+  outline: none;
+  border: 1px solid #c6d1e4;
 }
 
 div {
@@ -26,14 +34,9 @@ label {
 }
 
 input {
-  width: 100%;
-  height: inherit;
-  margin-top: 10px;
-  border-radius: 10px;
-  color: black;
-  padding-left: 20px;
-  outline: none;
-  border: 1px solid #c6d1e4;
+  border: none;
+  height: 100%;
+  width: 95%;
 }
 
 input::placeholder {

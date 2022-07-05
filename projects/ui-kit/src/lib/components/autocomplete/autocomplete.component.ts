@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -11,11 +12,11 @@ import {
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'lib-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css'],
+  selector: 'lib-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.css'],
 })
-export class InputComponent implements OnInit, AfterViewInit {
+export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('textLabel') textLabel: string | undefined;
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
@@ -30,16 +31,18 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Output('blurForRer') blurForRed = new EventEmitter();
   @Input('value') value: string | undefined;
   @Input('autocomplete') autocomplete: string | undefined;
-  @Input('togglePasswordVisibility') togglePasswordVisibility: boolean = false;
+
   @Input('switchIcon') switchIcon: boolean = false;
   @Input('class') class!: string;
-  @Input('passwordIcon') passwordIcon!: string;
-  @Input('passwordIconHide') passwordIconHide!: string;
 
+  inputValue: any = '';
+  users: any = [];
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllUsers()
+  }
 
   ngAfterViewInit(): void {
     this.input.nativeElement.value = this.value ?? '';
@@ -56,5 +59,22 @@ export class InputComponent implements OnInit, AfterViewInit {
 
   blurInput() {
     this.blurForRed.emit();
+  }
+
+  getAllUsers() {
+    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((res: any) => {
+        let users = res;
+        // console.log(users)
+        users.forEach((user: any) => {
+            // console.log(user.name)
+            this.users.push(user.name)
+        })
+        console.log(this.users)
+    })
+  }
+
+  logInputValue() {
+    console.log(this.inputValue)
+
   }
 }
