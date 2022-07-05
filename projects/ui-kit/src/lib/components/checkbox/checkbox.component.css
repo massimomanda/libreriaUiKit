@@ -1,0 +1,98 @@
+/* #check {
+    width: 100%;
+    height: auto;
+    margin-top: 28px;
+    font-family: 'Hind Madurai';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+} */
+
+
+
+/* 
+input[type="checkbox"] {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    margin-right: 10px;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid #2E3A59;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    transition: border 120ms ease-in-out;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.8em;
+    height: 0.8em;
+    transform: scale(0); 
+    transition: 120ms transform ease-in-out;
+    /* background-color:red; 
+    transform-origin: bottom left; 
+    /* clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%); 
+    background-image: url('https://m.media-amazon.com/images/I/51h1ZnkT14L._AC_SY450_.jpg'); 
+    background-size: cover;
+    
+} 
+*/
+
+input{
+    display: none;
+}
+img{
+
+    width: 0.8em;
+    height: 0.8em;
+ 
+}
+
+.cliked{
+    /* per la img contenuta all`interno */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 1em;
+    height: 1em;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 25%;
+    
+
+}
+.unclicked{
+    /* per la img contenuta all`interno */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 1em;
+    height: 1em;
+    border: 1px solid black;
+    border-radius: 25%;
+    /* background-image: url('https://m.media-amazon.com/images/I/51h1ZnkT14L._AC_SY450_.jpg'); */
+    
+    background-size: cover;
+    background-color: white;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+
+}
+
+input[type="checkbox"]:checked {
+    border: 0.15em solid black;
+    background-color: white;
+}
