@@ -58,7 +58,7 @@ input.ng-invalid.ng-touched  {
 }
 
 .icon-container svg {
-    fill: #003594;
+    fill: black;
 }
 
 .hide-password {

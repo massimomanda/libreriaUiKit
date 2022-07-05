@@ -30,7 +30,7 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Output('blurForRer') blurForRed = new EventEmitter();
   @Input('value') value: string | undefined;
   @Input('autocomplete') autocomplete: string | undefined;
-  @Input('showPassword') showPassword: boolean = false;
+  @Input('togglePasswordVisibility') showPassword: boolean = false;
   @Input('switchIcon') switchIcon: boolean = false;
 
   constructor() {}
