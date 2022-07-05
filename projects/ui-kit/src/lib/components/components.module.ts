@@ -19,13 +19,13 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     RoundButtonComponent,
     ToastComponent,
     InputComponent,
-    CheckboxComponent
+    CheckboxComponent,
     TextareaComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,
   ],
-  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent, TextareaComponent],
-  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent,CheckboxComponent],
+  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent, TextareaComponent, CheckboxComponent],
+  
 })
 export class ComponentsModule { }
