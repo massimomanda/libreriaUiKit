@@ -1,0 +1,7 @@
+<div (click)="onClick() "     >
+  <div [ngClass]="on? 'cliked' : 'unclicked' " id="check" [formGroup]="parentFormGroup">
+        <img *ngIf="on" [src]="image" alt="checkbox img">
+    </div>
+    <ng-content></ng-content>
+</div>
+<input type="checkbox" [formControlName]="controlName" [name]="name" #check>
