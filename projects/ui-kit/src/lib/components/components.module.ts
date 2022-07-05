@@ -6,6 +6,7 @@ import { RoundButtonComponent } from './round-button/round-button.component';
 import { ToastComponent } from './toast/toast.component';
 import { InputComponent } from './input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TextareaComponent } from './textarea/textarea.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 
 
@@ -18,11 +19,13 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     RoundButtonComponent,
     ToastComponent,
     InputComponent,
-    CheckboxComponent
+    CheckboxComponent,
+    TextareaComponent
   ],
   imports: [
     CommonModule,ReactiveFormsModule,
   ],
-  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent,CheckboxComponent],
+  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent, TextareaComponent, CheckboxComponent],
+  
 })
 export class ComponentsModule { }
