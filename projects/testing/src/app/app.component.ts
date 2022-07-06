@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   users: any = [];
   searchResult: any = [];
   messaggio!: string;
+  selectedOption: number = 5;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -46,25 +47,15 @@ export class AppComponent implements OnInit {
     // });
     this.formAutocomplete.valueChanges.subscribe((res: any) => {
       let risposta = res.autocomplete
+      this.searchResult = this.users.filter((r: any) => r.toLowerCase().includes(risposta) && risposta !== '').slice(0, 5)
 
-      // if(this.formAutocomplete.value.autocomplete !== '' && this.searchResult == []){
 
-      //  this.searchResult = []
-      //  this.messaggio = 'Nessun risultato'
+      if (this.formAutocomplete.value.autocomplete !== '' && this.searchResult.length === 0) {
 
-      // }
-      if (risposta.length !== 0) {
+        this.messaggio = 'Nessun risultato'
 
-        this.searchResult = this.users.filter((r: any) => r.toLowerCase().includes(risposta)).slice(0, 5)
-
-        console.log(this.searchResult)
-        if(this.searchResult === []){
-          console.log('ciao')
-        }
-        
-      } else{
-        this.searchResult = []
       }
+
     })
   }
 
@@ -90,4 +81,23 @@ export class AppComponent implements OnInit {
       console.log(this.users)
     })
   }
+  onKeyDown(event: any) {
+    switch (event.key) {
+      case 'ArrowUp': {
+        
+        this.selectedOption = this.selectedOption > 0 ? this.selectedOption-1 : this.searchResult.length -1
+        console.log(this.selectedOption)
+
+        break;
+      }
+      case 'ArrowDown': {
+        this.selectedOption++
+        console.log(this.selectedOption)
+   
+        break;
+      }
+      default: break;
+    }
+  }
+
 }

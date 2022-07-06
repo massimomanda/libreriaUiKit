@@ -8,8 +8,11 @@
     width: 50%;
     min-height: 50px;
 }
-#result{
+.result{
  display: flex;
  flex-direction: column;
 
+}
+.result.selected{
+    background: lightgray;
 }
