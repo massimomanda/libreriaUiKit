@@ -36,12 +36,12 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('class') class!: string;
 
   inputValue: any = '';
-  users: any = [];
 
-  constructor(private http: HttpClient) {}
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.getAllUsers()
+    
   }
 
   ngAfterViewInit(): void {
@@ -61,20 +61,12 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.blurForRed.emit();
   }
 
-  getAllUsers() {
-    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((res: any) => {
-        let users = res;
-        // console.log(users)
-        users.forEach((user: any) => {
-            // console.log(user.name)
-            this.users.push(user.name)
-        })
-        console.log(this.users)
-    })
-  }
+
 
   logInputValue() {
     console.log(this.inputValue)
 
   }
+
+  
 }

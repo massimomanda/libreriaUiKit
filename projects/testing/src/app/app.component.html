@@ -1,5 +1,16 @@
-<div class="input">
-  <lib-autocomplete [placeholder]="'inizia ricerca...'" ></lib-autocomplete>
+<div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
+  <lib-autocomplete  [placeholder]="'inizia ricerca...'" [parentFormGroup]="formAutocomplete" [controlName]="'autocomplete'"
+  [name]="'autocomplete'" [for]="'autocomplete'" (keydown)="onKeyDown($event)">
+  <div class="result" *ngFor="let result of searchResult; let i = index" [class.selected]="selectedOption%searchResult.length === i" >
+    {{result}}
+    
+  </div>
+  <div>
+    {{messaggio}}
+
+  </div>
+  
+</lib-autocomplete>
 </div>
 
 <!-- <div class="input">
