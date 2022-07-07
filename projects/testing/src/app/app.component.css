@@ -16,3 +16,6 @@
 .result.selected{
     background: lightgray;
 }
+.result:hover{
+    background: lightgray;
+}
