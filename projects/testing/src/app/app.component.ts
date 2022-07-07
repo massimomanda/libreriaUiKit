@@ -18,7 +18,11 @@ export class AppComponent implements OnInit {
   users: any = [];
   searchResult: any = [];
   messaggio!: string;
-  selectedOption: number = 5;
+  selectedOption: number = -1;
+  currentSelection: any;
+  searchSubscribe: any;
+
+
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -45,7 +49,7 @@ export class AppComponent implements OnInit {
     //   error(err) { console.error('something wrong occurred: ' + err); },
     //   complete() { console.log('done'); }
     // });
-    this.formAutocomplete.valueChanges.subscribe((res: any) => {
+   this.searchSubscribe =  this.formAutocomplete.valueChanges.subscribe((res: any) => {
       let risposta = res.autocomplete
       this.searchResult = this.users.filter((r: any) => r.toLowerCase().includes(risposta) && risposta !== '').slice(0, 5)
 
@@ -54,9 +58,12 @@ export class AppComponent implements OnInit {
 
         this.messaggio = 'Nessun risultato'
 
-      }
+      }else {
 
+         this.messaggio = ''
+      }
     })
+
   }
 
   metodo() {
@@ -82,22 +89,34 @@ export class AppComponent implements OnInit {
     })
   }
   onKeyDown(event: any) {
+
     switch (event.key) {
       case 'ArrowUp': {
         
         this.selectedOption = this.selectedOption > 0 ? this.selectedOption-1 : this.searchResult.length -1
         console.log(this.selectedOption)
-
         break;
       }
       case 'ArrowDown': {
-        this.selectedOption++
+        if(this.selectedOption < 4){
+          this.selectedOption++
+
+        } else{
+          this.selectedOption = 0
+        }
         console.log(this.selectedOption)
    
         break;
       }
       default: break;
     }
+  }
+  onSelect(e:any){
+   this.currentSelection = e.target.innerHTML
+   this.searchSubscribe.unsubscribe()
+   console.log( this.currentSelection)
+   this.formAutocomplete.setValue({autocomplete: this.currentSelection})
+
   }
 
 }
