@@ -192,4 +192,8 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  clearInput() {
+    this.formAutocomplete.setValue({ autocomplete: '' });
+  }
 }

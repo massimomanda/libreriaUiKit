@@ -19,3 +19,5 @@ export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/textarea/textarea.component';
 
 export * from './lib/components/autocomplete/autocomplete.component';
+
+export * from './lib/components/close-button/close-button.component';

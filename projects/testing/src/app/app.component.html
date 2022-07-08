@@ -1,12 +1,16 @@
 <div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
   <lib-autocomplete
+    (clear)="clearInput()"
     [placeholder]="'inizia ricerca...'"
     [parentFormGroup]="formAutocomplete"
     [controlName]="'autocomplete'"
     [name]="'autocomplete'"
     [for]="'autocomplete'"
     (keydown)="onKeyDown($event)"
+    [class]="'primary'"
     #input
+    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : 
+    false"
   >
     <div
       class="result"
@@ -16,7 +20,7 @@
     >
       {{ result }}
     </div>
-    <div *ngIf="!selected">
+    <div class="no-result" *ngIf="!selected">
       {{ messaggio }}
     </div>
     <!-- <div class="selection-wrapper" *ngIf="selectedText !== ''">

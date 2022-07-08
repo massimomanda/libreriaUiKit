@@ -10,6 +10,7 @@ import { TextareaComponent } from './textarea/textarea.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CloseButtonComponent } from './close-button/close-button.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     CheckboxComponent,
     TextareaComponent,
     AutocompleteComponent,
+    CloseButtonComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [
@@ -32,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     TextareaComponent,
     CheckboxComponent,
     AutocompleteComponent,
+    CloseButtonComponent,
   ],
 })
 export class ComponentsModule {}
