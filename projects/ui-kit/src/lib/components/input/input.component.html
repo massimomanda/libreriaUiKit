@@ -1,4 +1,4 @@
-<div id="input-wrapper" [formGroup]="parentFormGroup">
+<div [ngClass]="class" id="input-wrapper" [formGroup]="parentFormGroup">
   <ng-content></ng-content>
 
   <label [for]="for">{{ textLabel }}</label>
@@ -13,10 +13,15 @@
     #input
   />
 
-  <div *ngIf="showPassword" class="icon-container">
-    <div id="show-wrapper" *ngIf="showPassword && !switchIcon" (click)="onShowPasswordClicked()">
+  <div *ngIf="togglePasswordVisibility" class="icon-container">
+    <div
+      id="show-wrapper"
+      *ngIf="togglePasswordVisibility && !switchIcon"
+      (click)="onShowPasswordClicked()"
+    >
       <span class="show-password">
         <svg
+          *ngIf="!passwordIcon"
           width="20"
           height="14"
           viewBox="0 0 20 14"
@@ -29,11 +34,19 @@
             d="M10 0C2.408 0 0.126318 6.617 0.105431 6.684L0 7L0.104436 7.316C0.126318 7.383 2.408 14 10 14C17.592 14 19.8737 7.383 19.8946 7.316L20 7L19.8956 6.684C19.8737 6.617 17.592 0 10 0ZM10 12C4.67774 12 2.61587 8.154 2.11657 7C2.61786 5.842 4.68072 2 10 2C15.3223 2 17.3841 5.846 17.8834 7C17.3821 8.158 15.3193 12 10 12Z"
           />
         </svg>
+        <div *ngIf="passwordIcon">
+            {{ passwordIcon }}
+        </div>
       </span>
     </div>
-    <div id="hide-wrapper" *ngIf="showPassword && switchIcon" (click)="onShowPasswordClicked()">
+    <div
+      id="hide-wrapper"
+      *ngIf="togglePasswordVisibility && switchIcon"
+      (click)="onShowPasswordClicked()"
+    >
       <span class="hide-password"
         ><svg
+          *ngIf="!passwordIcon"
           width="20"
           height="19"
           viewBox="0 0 20 19"
@@ -46,8 +59,11 @@
           />
           <path
             d="M7.50022 2.26104C8.26109 2.09448 9.09262 1.99996 10 1.99996C17.592 1.99996 19.8737 8.61695 19.8956 8.68396L20 8.99996L19.8946 9.31596C19.8843 9.34898 19.3248 10.9731 17.8511 12.6119L16.4594 11.2202C17.2458 10.3296 17.6859 9.45633 17.8834 8.99996C17.3841 7.84596 15.3223 3.99996 10 3.99996C9.74753 3.99996 9.50239 4.00861 9.2644 4.02522L7.50022 2.26104Z"
-          /></svg
-      ></span>
+          /></svg>
+          <div *ngIf="passwordIconHide">
+            {{ passwordIconHide }}
+          </div>
+        </span>
     </div>
   </div>
 </div>

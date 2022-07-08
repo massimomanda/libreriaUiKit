@@ -5,12 +5,11 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { RoundButtonComponent } from './round-button/round-button.component';
 import { ToastComponent } from './toast/toast.component';
 import { InputComponent } from './input/input.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextareaComponent } from './textarea/textarea.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-
-
-
+import { AutocompleteComponent } from './autocomplete/autocomplete.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -20,12 +19,19 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
     ToastComponent,
     InputComponent,
     CheckboxComponent,
-    TextareaComponent
+    TextareaComponent,
+    AutocompleteComponent,
   ],
-  imports: [
-    CommonModule,ReactiveFormsModule,
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule, FormsModule],
+  exports: [
+    ButtonComponent,
+    WelcomeComponent,
+    RoundButtonComponent,
+    ToastComponent,
+    InputComponent,
+    TextareaComponent,
+    CheckboxComponent,
+    AutocompleteComponent,
   ],
-  exports:[ButtonComponent,WelcomeComponent,RoundButtonComponent,ToastComponent,InputComponent, TextareaComponent, CheckboxComponent],
-  
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

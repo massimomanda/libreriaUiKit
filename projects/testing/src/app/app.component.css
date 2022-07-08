@@ -4,7 +4,28 @@
     box-sizing: border-box;
 }
 
-#input {
+.input {
     width: 50%;
-    height: 50px;
+    min-height: 50px;
+    position: relative;
+}
+/* .selection-wrapper {
+    position: absolute; 
+    background: white;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    padding-left: 1.2rem;
+} */
+
+.result{
+ display: flex;
+ flex-direction: column;
+
+}
+.result.selected{
+    background: lightgray;
+}
+.result:hover{
+    background: lightgray;
 }

@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import {
   AfterViewInit,
   Component,
@@ -11,11 +12,11 @@ import {
 import { FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'lib-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.css'],
+  selector: 'lib-autocomplete',
+  templateUrl: './autocomplete.component.html',
+  styleUrls: ['./autocomplete.component.css'],
 })
-export class InputComponent implements OnInit, AfterViewInit {
+export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('textLabel') textLabel: string | undefined;
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
@@ -30,16 +31,18 @@ export class InputComponent implements OnInit, AfterViewInit {
   @Output('blurForRer') blurForRed = new EventEmitter();
   @Input('value') value: string | undefined;
   @Input('autocomplete') autocomplete: string | undefined;
-  @Input('togglePasswordVisibility') togglePasswordVisibility: boolean = false;
+
   @Input('switchIcon') switchIcon: boolean = false;
   @Input('class') class!: string;
-  @Input('passwordIcon') passwordIcon!: string;
-  @Input('passwordIconHide') passwordIconHide!: string;
+
+  inputValue: any = '';
 
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   ngAfterViewInit(): void {
     this.input.nativeElement.value = this.value ?? '';
@@ -57,4 +60,13 @@ export class InputComponent implements OnInit, AfterViewInit {
   blurInput() {
     this.blurForRed.emit();
   }
+
+
+
+  logInputValue() {
+    console.log(this.inputValue)
+
+  }
+
+  
 }
