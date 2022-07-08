@@ -113,4 +113,6 @@ input.ng-invalid.ng-touched {
 
 .clear {
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }

@@ -20,8 +20,13 @@
     >
       {{ result }}
     </div>
+
     <div class="no-result" *ngIf="!selected">
       {{ messaggio }}
+    </div>
+
+    <div *ngIf="currentSelection && !selected" class="risposta-wrapper">
+        {{risposta}}
     </div>
     <!-- <div class="selection-wrapper" *ngIf="selectedText !== ''">
     {{ selectedText }}
