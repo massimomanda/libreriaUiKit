@@ -7,7 +7,17 @@
 .input {
     width: 50%;
     min-height: 50px;
+    position: relative;
 }
+/* .selection-wrapper {
+    position: absolute; 
+    background: white;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    padding-left: 1.2rem;
+} */
+
 .result{
  display: flex;
  flex-direction: column;
