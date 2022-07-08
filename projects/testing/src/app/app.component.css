@@ -53,3 +53,12 @@ lib-autocomplete {
     top: 9px;
     left: 19px;
 }
+
+.round-button-wrapper {
+    height: 50px;
+    width: 50px;
+}
+
+.round-button-wrapper  > *img {
+    object-fit: contain;
+}
