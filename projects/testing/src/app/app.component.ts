@@ -1,12 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnInit,
-  ViewChild,
-} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 
 import { ToastService } from './services/toast.service';
@@ -19,7 +12,10 @@ import { ToastService } from './services/toast.service';
 export class AppComponent implements OnInit {
   @ViewChild('input') input!: any;
   title = 'testing';
-  text!: string;
+  text!:string;
+  parentFormGroup : FormGroup = {} as FormGroup;
+
+  
   pippo: EventEmitter<any> = new EventEmitter();
   formAutocomplete: FormGroup = {} as FormGroup;
   users: any = [];
@@ -41,18 +37,18 @@ export class AppComponent implements OnInit {
   //     subscriber.complete();
   //   }, 1000);
   // });
-  constructor(
-    public toast: ToastService,
-    private _fb: FormBuilder,
-    private http: HttpClient
-  ) {}
+  constructor(public toast:ToastService,
+    private _fb:FormBuilder){}
 
-  ngOnInit() {
-    this.formAutocomplete = this._fb.group({
-      autocomplete: [''],
+  ngOnInit(){
+
+    this.parentFormGroup = this._fb.group({
+   
+      checkbox: [true, [Validators.required]],
     });
-    this.getAllUsers();
-    this.toast.setMessage('ciao');
+
+    this.parentFormGroup.valueChanges.subscribe(res => console.log(res))
+    this.toast.setMessage('ciao')
     //this.pippo.emit('vafammocc')
     // this.pippo.subscribe({
     //   next(x) { console.log('got value ' + x); },

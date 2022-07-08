@@ -48,7 +48,8 @@ input[type="checkbox"]::before {
 */
 
 input{
-    display: none;
+    visibility: hidden;
+    pointer-events: none;
 }
 img{
 

@@ -8,7 +8,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class CheckboxComponent implements OnInit,AfterViewInit{
 
-  @Input('name') name: string | undefined;
+  @Input('name') name: any;
   @Input('content') content!:string
   @Input('image') image!:string
   @Input('controlName') controlName: string = '';
@@ -25,14 +25,15 @@ export class CheckboxComponent implements OnInit,AfterViewInit{
    
   }
   ngOnInit(): void {
-    
+    this.on = this.parentFormGroup.controls[this.controlName].value
+
+    this.parentFormGroup.controls[this.controlName].valueChanges.subscribe(res => 
+      this.on = res
+      )
+
   }
   onClick(){
-    this.on = !this.on;
-    // this.check.nativeElement.click()
     this.check.nativeElement.click()
-    // console.log(this.check.nativeElement.value)
   }
-  clickTrigger(){
-  }
+
 }
