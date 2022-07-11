@@ -1,7 +1,6 @@
 <div>
-    <button [ngStyle]="{ border: border, background: background}">
-        <img src="{{ image }}" />
-      </button>
-      <p>{{ text }}</p>
+  <button [ngStyle]="{ border: border, background: background }" [ngClass]="class">
+    <img [ngStyle]="{ height: height, width: width}" src="{{ image }}" />
+  </button>
+  <p>{{ text }}</p>
 </div>
-

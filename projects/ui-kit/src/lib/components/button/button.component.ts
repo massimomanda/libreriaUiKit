@@ -11,6 +11,7 @@ export class ButtonComponent implements OnInit {
   @Input('disabled') disabled:boolean | undefined;
   @Input('background') background:string | undefined;
   @Input('color') color:string | undefined;
+  @Input('class') class!: string;
  
    constructor() { }
  

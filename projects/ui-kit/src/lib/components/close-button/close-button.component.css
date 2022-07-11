@@ -1,0 +1,23 @@
+.primary {
+    fill: #003594;
+  }
+  
+  .dark {
+    fill: black;
+  }
+  
+  .error {
+      fill: #EB5757;
+  }
+  
+  .disabled {
+      fill: #C1C1C1;
+  }
+  
+  .outline {
+      stroke: black !important ;
+  }
+
+  .clear {
+    cursor: pointer;
+  }

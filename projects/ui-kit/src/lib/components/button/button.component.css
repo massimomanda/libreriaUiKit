@@ -8,4 +8,23 @@ button{
     padding: 0 2rem;
     overflow: auto;
 }
+.primary {
+    background: #003594;
+    color: white;
+}
+
+.dark {
+    background: black;
+    color: white;
+}
+
+.error {
+    background: #EB5757;
+    color: black;
+}
+
+.disabled {
+    background: #C1C1C1;
+    color: black;
+}
 

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
   searchSubscribe: any;
   selected = false;
   selectedText: string = '';
+  risposta: string = '';
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -86,51 +87,61 @@ export class AppComponent implements OnInit {
   onKeyDown(event: any) {
     switch (event.key) {
       case 'ArrowUp': {
-        this.selectedOption =
-          this.selectedOption > 0
-            ? this.selectedOption - 1
-            : this.searchResult.length - 1;
+        if (this.searchResult.length > 0) {
+          this.selectedOption =
+            this.selectedOption > 0
+              ? this.selectedOption - 1
+              : this.searchResult.length - 1;
 
-        this.searchSubscribe.unsubscribe();
+          this.searchSubscribe.unsubscribe();
 
-        this.currentSelection = this.searchResult[this.selectedOption];
-        this.formAutocomplete.setValue({
-          autocomplete: this.currentSelection,
-        });
+          this.currentSelection = this.searchResult[this.selectedOption];
+          this.formAutocomplete.setValue({
+            autocomplete: this.risposta.concat(
+              this.currentSelection.substr(this.risposta.length)
+            ),
+          });
 
-        setTimeout(() => {
-          this.input.input.nativeElement.setSelectionRange(10000, 10000);
-        }, 0);
-        // console.log(this.input.input.nativeElement);
+          setTimeout(() => {
+            this.input.input.nativeElement.setSelectionRange(10000, 10000);
+          }, 0);
+          // console.log(this.input.input.nativeElement);
 
-        this.searchSubscription();
-        // this.selectedText = this.currentSelection;
+          this.searchSubscription();
+          // this.selectedText = this.currentSelection;
+        }
 
         break;
       }
       case 'ArrowDown': {
-        if (this.selectedOption < this.searchResult.length - 1) {
-          this.selectedOption++;
-          this.selectedText = this.currentSelection;
-          this.currentSelection = this.searchResult[this.selectedOption];
-          this.searchSubscribe.unsubscribe();
+        if (this.searchResult.length > 0) {
+          if (this.selectedOption < this.searchResult.length - 1) {
+            this.selectedOption++;
+            //   this.selectedText = this.currentSelection;
+            this.currentSelection = this.searchResult[this.selectedOption];
+            this.searchSubscribe.unsubscribe();
 
-          this.formAutocomplete.setValue({
-            autocomplete: this.currentSelection,
-          });
+            this.formAutocomplete.setValue({
+              autocomplete: this.risposta.concat(
+                this.currentSelection.substr(this.risposta.length)
+              ),
+            });
 
-          this.searchSubscription();
-        } else {
-          this.selectedOption = 0;
-          this.currentSelection = this.searchResult[this.selectedOption];
-          //   this.selectedText = this.currentSelection;
-          this.searchSubscribe.unsubscribe();
+            this.searchSubscription();
+          } else {
+            this.selectedOption = 0;
+            this.currentSelection = this.searchResult[this.selectedOption];
+            //   this.selectedText = this.currentSelection;
+            this.searchSubscribe.unsubscribe();
 
-          this.formAutocomplete.setValue({
-            autocomplete: this.currentSelection,
-          });
+            this.formAutocomplete.setValue({
+              autocomplete: this.risposta.concat(
+                this.currentSelection.substr(this.risposta.length)
+              ),
+            });
 
-          this.searchSubscription();
+            this.searchSubscription();
+          }
         }
 
         break;
@@ -139,7 +150,9 @@ export class AppComponent implements OnInit {
         if (this.formAutocomplete.value.autocomplete !== '') {
           this.currentSelection = this.searchResult[this.selectedOption];
           this.formAutocomplete.setValue({
-            autocomplete: this.currentSelection,
+            autocomplete: this.risposta.concat(
+              this.currentSelection.substr(this.risposta.length)
+            ),
           });
           this.selected = true;
           this.selectedOption = -1;
@@ -166,17 +179,17 @@ export class AppComponent implements OnInit {
   searchSubscription() {
     this.searchSubscribe = this.formAutocomplete.valueChanges.subscribe(
       (res: any) => {
-        this.selected = false;
-        let risposta = res.autocomplete;
+        this.risposta = res.autocomplete;
         this.currentSelection = '';
         this.searchResult = this.users
           .filter(
             (r: any) =>
-              r.toLowerCase().startsWith(risposta.toLowerCase()) &&
-              risposta !== ''
+              r.toLowerCase().startsWith(this.risposta.toLowerCase()) &&
+              this.risposta !== ''
           )
           .slice(0, 5);
 
+        this.selected = false;
         if (
           this.formAutocomplete.value.autocomplete !== '' &&
           this.searchResult.length === 0
@@ -187,5 +200,9 @@ export class AppComponent implements OnInit {
         }
       }
     );
+  }
+
+  clearInput() {
+    this.formAutocomplete.setValue({ autocomplete: '' });
   }
 }

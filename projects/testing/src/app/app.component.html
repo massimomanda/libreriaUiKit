@@ -1,28 +1,87 @@
-<!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
 
-<!-- <div class="input">
+<lib-close-button [class]="'dark'"></lib-close-button>
+
+<div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
+  <lib-autocomplete
+    (clear)="clearInput()"
+    [placeholder]="'inizia ricerca...'"
+    [parentFormGroup]="formAutocomplete"
+    [controlName]="'autocomplete'"
+    [name]="'autocomplete'"
+    [for]="'autocomplete'"
+    (keydown)="onKeyDown($event)"
+    [class]="'primary'"
+    #input
+    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : 
+    false"
+  >
+    <div
+      class="result"
+      *ngFor="let result of searchResult; let i = index"
+      [class.selected]="selectedOption % searchResult.length === i"
+      (click)="onSelect(result)"
+    >
+      {{ result }}
+    </div>
+
+    <div class="no-result" *ngIf="messaggio">
+      {{ messaggio }}
+    </div>
+
+    <div *ngIf="currentSelection && !selected" class="risposta-wrapper">
+        {{risposta}}
+    </div>
+    
+  </lib-autocomplete>
+</div>
+
+<div class="input">
   <lib-input
     class="primary"
     [type]="'password'"
     [placeholder]="'inserisci password'"
     [togglePasswordVisibility]="true"
-    [height]="'300px'"
+    [height]="'40px'"
   ></lib-input>
-</div> -->
+</div>
 
-<!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
+<lib-welcome [name]="'Mario Rossi'"></lib-welcome>
+<div id="button">
 
-<lib-button [textButton]="'ciao'"></lib-button>
+  <lib-button [textButton]="'ciao'" [class]="'primary'" [disabled]="false"></lib-button>
+</div>
 
-<lib-round-button
+<div class="round-button-wrapper">
+    <lib-round-button
+    [height]="'100%'"
+    [width]="'100%'"
   [image]="
     'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'
   "
-></lib-round-button> -->
+  [class]="'primary'"
+  
 
-<!-- <lib-toast [text]="'prova'" (action)="metodo()"></lib-toast>
+></lib-round-button>
+</div>
 
 <lib-input [placeholder]="'ciao'" ></lib-input> -->
 
-<lib-checkbox  [image]="'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'" [parentFormGroup]="parentFormGroup" [controlName]="'checkbox'" [name]="'sono Name'"  [content]="'ciao'"></lib-checkbox>
-<!-- <lib-textarea [textLabel]="'ciao'" [background]="'red'" [border]="'1px solid green'" [placeholder]="'vediamo un pò se esce qualcosa!'" [resize]="''"></lib-textarea> -->
+
+<lib-input [placeholder]="'ciao'"></lib-input>
+
+<lib-checkbox
+  [image]="
+    'https://pbs.twimg.com/profile_images/758084549821730820/_HYHtD8F_400x400.jpg'
+  "
+  [controlName]="'sono la controllname'"
+  [name]="'sono Name'"
+  [content]="'ciao'"
+></lib-checkbox>
+
+<lib-textarea
+  [textLabel]="'ciao'"
+  [background]="'red'"
+  [border]="'1px solid green'"
+  [placeholder]="'vediamo un pò se esce qualcosa!'"
+  [resize]="''"
+></lib-textarea>

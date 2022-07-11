@@ -2,13 +2,13 @@ div {
     width: 100%;
     height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     pointer-events: none;
 }
 
 button {
 
+    overflow: hidden;
     width: 100%;
     height: 100%;
     border-radius: 50%;
@@ -25,7 +25,23 @@ button {
 } */
 
 
-p{
+p {
     margin-top: 5px;
     text-align: center;
-} 
+}
+
+.primary {
+    background: #003594;
+}
+
+.dark {
+    background: black;
+}
+
+.error {
+    background: #EB5757;
+}
+
+.disabled {
+    background: #C1C1C1;
+}
