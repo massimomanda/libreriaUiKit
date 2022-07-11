@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 
 import { ToastService } from './services/toast.service';
+import { TokenService } from './services/token/token.service';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
   selected = false;
   selectedText: string = '';
   risposta: string = '';
+  token!: string;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -45,7 +47,8 @@ export class AppComponent implements OnInit {
   constructor(
     public toast: ToastService,
     private _fb: FormBuilder,
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenService: TokenService,
   ) {}
 
   ngOnInit() {
@@ -208,5 +211,11 @@ export class AppComponent implements OnInit {
 
   clearInput() {
     this.formAutocomplete.setValue({ autocomplete: '' });
+  }
+
+  onClick() {
+    this.tokenService.getToken().subscribe((token) => {
+        console.log(token);
+    })
   }
 }

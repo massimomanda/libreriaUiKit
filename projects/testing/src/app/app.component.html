@@ -1,5 +1,5 @@
 
-<lib-close-button [class]="'dark'"></lib-close-button>
+<!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
 <div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
   <lib-autocomplete
@@ -35,7 +35,9 @@
   </lib-autocomplete>
 </div>
 
-<div class="input">
+<button (click)="onClick()">T O K E N</button>
+
+<!-- <div class="input">
   <lib-input
     class="primary"
     [type]="'password'"
@@ -84,4 +86,4 @@
   [border]="'1px solid green'"
   [placeholder]="'vediamo un pò se esce qualcosa!'"
   [resize]="''"
-></lib-textarea>
+></lib-textarea> -->
