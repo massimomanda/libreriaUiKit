@@ -62,3 +62,7 @@ lib-autocomplete {
 .round-button-wrapper  > *img {
     object-fit: contain;
 }
+#button{
+    width: 100px;
+    height: 30px;
+}
