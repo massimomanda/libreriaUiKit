@@ -17,9 +17,10 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./autocomplete.component.css'],
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
-  @Input('textLabel') textLabel: string | undefined;
+  @Input('textLabel') textLabel: string = '';
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
+  @Input('showClear') showClear: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
   @Input('height') height: string | undefined;
   @Input('for') for: string | undefined;
@@ -35,17 +36,19 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('switchIcon') switchIcon: boolean = false;
   @Input('class') class!: string;
 
-  inputValue: any = '';
+  @Output('clear') clear = new EventEmitter();
 
+
+  inputValue: any = '';
 
   constructor() {}
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
     this.input.nativeElement.value = this.value ?? '';
+
+    
   }
 
   onShowPasswordClicked() {
@@ -61,12 +64,11 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.blurForRed.emit();
   }
 
-
-
   logInputValue() {
-    console.log(this.inputValue)
-
+    console.log(this.inputValue);
   }
 
-  
+  onClear(e: any) {
+    this.clear.emit(e)
+  }
 }
