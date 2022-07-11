@@ -12,6 +12,7 @@ import { SearchService } from './services/search/search.service';
 
 import { ToastService } from './services/toast.service';
 import { TokenService } from './services/token/token.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -213,7 +214,7 @@ export class AppComponent implements OnInit {
   //   }
 
   searchSubscription() {
-    this.searchSubscribe = this.formAutocomplete.valueChanges.subscribe(
+    this.searchSubscribe = this.formAutocomplete.valueChanges.pipe(debounceTime(500)).subscribe(
       (inputValue: any) => {
         this.searchResult = [];
         this.risposta = inputValue.autocomplete;
