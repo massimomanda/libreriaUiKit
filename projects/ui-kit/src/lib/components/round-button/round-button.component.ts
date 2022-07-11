@@ -12,6 +12,7 @@ export class RoundButtonComponent implements OnInit {
   @Input('background') background: string | undefined;
   @Input('height') height: string | undefined;
   @Input('width') width: string | undefined;
+  @Input('class') class!: string;
 
   
 
