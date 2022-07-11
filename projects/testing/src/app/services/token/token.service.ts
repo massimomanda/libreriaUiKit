@@ -15,7 +15,8 @@ export class TokenService {
         'Basic NTk0ZDdhMzUwZWRlNDZlYTg0NWE5MzJlMzhkY2ZjMWQ6YTZlYjcyOTQ4YjQ4NDc3N2E4NTRmZjNmMjljOGUwZDc',
       'Content-Type': 'application/x-www-form-urlencoded',
     };
+    const params = { grant_type: 'client_credentials' };
 
-    return this.http.post(baseURL, body, { headers: headers, params: {grant_type: 'client_credentials'} });
+    return this.http.post(baseURL, body, { headers: headers, params: params });
   }
 }

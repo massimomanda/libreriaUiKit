@@ -17,8 +17,8 @@
   >
     <div
       class="result"
-      *ngFor="let result of searchResult; let i = index"
       [class.selected]="selectedOption % searchResult.length === i"
+      *ngFor="let result of searchResult; let i = index"
       (click)="onSelect(result)"
     >
       {{ result }}
