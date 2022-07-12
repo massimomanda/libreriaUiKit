@@ -244,7 +244,7 @@ export class AppComponent implements OnInit {
                   if (this.searchResult.length < 5) {
                     this.searchResult.push(el.name);
                     this.isSearching = false;
-                  } 
+                  }
                 }
               });
             },
@@ -261,7 +261,7 @@ export class AppComponent implements OnInit {
 
         if (
           this.formAutocomplete.value.autocomplete !== '' &&
-          !(this.searchResult.length === 0)
+          this.searchResult.length === 0
         ) {
           this.messaggio = 'Nessun risultato';
         } else {

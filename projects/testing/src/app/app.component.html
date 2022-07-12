@@ -1,5 +1,9 @@
 <!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
+<div id="button">
+    <lib-button (click)="onClick()" [textButton]="'Token'" [class]="'primary'" [disabled]="false"></lib-button>
+</div>
+
 <div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
   <lib-autocomplete
     (clear)="clearInput()"
@@ -34,7 +38,10 @@
   </lib-autocomplete>
 </div>
 
-<button (click)="onClick()">T O K E N</button>
+<!-- <button (click)="onClick()">T O K E N</button> -->
+<!-- <lib-button (click)="onClick()"></lib-button> -->
+
+
 
 
 

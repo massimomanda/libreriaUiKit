@@ -1,14 +1,14 @@
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .input {
-    width: 50%;
-    min-height: 50px;
-    position: relative;
-    margin: 0 auto;
+  width: 50%;
+  min-height: 50px;
+  position: relative;
+  margin: 0 auto;
 }
 /* .selection-wrapper {
     position: absolute; 
@@ -19,51 +19,50 @@
     padding-left: 1.2rem;
 } */
 
-.result{
- display: flex;
- flex-direction: column;
- padding: 0.2rem 1rem;
- overflow: hidden;
-border-left: 3px solid transparent;
+.result {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1rem;
+  overflow: hidden;
+  border-left: 3px solid transparent;
 }
 
 .no-result {
- padding: 0.2rem 1rem;
- opacity: 0.5;
+  padding: 0.6rem 1rem;
+  opacity: 0.5;
 }
 
-.result.selected{
-    background: rgba(218, 218, 218, 0.521);
-    border-left: 3px solid #003594;
+.result.selected {
+  background: rgba(218, 218, 218, 0.521);
+  border-left: 3px solid #003594;
 }
 
-.result:hover{
-    background: rgba(218, 218, 218, 0.521);
-    cursor: default;
-    
+.result:hover {
+  background: rgba(218, 218, 218, 0.521);
+  cursor: default;
 }
 
 lib-autocomplete {
-    position: relative;
+  position: relative;
 }
 
 .risposta-wrapper {
-    position: absolute;
-    background: transparent;
-    top: 9px;
-    left: 19px;
+  position: absolute;
+  background: transparent;
+  top: 9px;
+  left: 19px;
 }
 
 .round-button-wrapper {
-    height: 50px;
-    width: 50px;
+  height: 50px;
+  width: 50px;
 }
 
-.round-button-wrapper  > *img {
-    object-fit: contain;
-}
-#button{
-    width: 100px;
-    height: 30px;
+.round-button-wrapper > *img {
+  object-fit: contain;
 }
 
+#button {
+  width: 100px;
+  height: 30px;
+}
