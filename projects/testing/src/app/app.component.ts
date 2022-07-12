@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
   text!: string;
   pippo: EventEmitter<any> = new EventEmitter();
   formAutocomplete: FormGroup = {} as FormGroup;
-  users: any = [];
   searchResult: any = [];
   messaggio!: string;
   selectedOption: number = -1;
@@ -37,6 +36,7 @@ export class AppComponent implements OnInit {
   token!: string;
   evidenziaRicerca = false;
   isSearching: boolean = false;
+  showClear = false;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -60,16 +60,10 @@ export class AppComponent implements OnInit {
     this.formAutocomplete = this._fb.group({
       autocomplete: [''],
     });
-    this.getAllUsers();
-    this.toast.setMessage('ciao');
-    //this.pippo.emit('vafammocc')
-    // this.pippo.subscribe({
-    //   next(x) { console.log('got value ' + x); },
-    //   error(err) { console.error('something wrong occurred: ' + err); },
-    //   complete() { console.log('done'); }
-    // });
 
-    this.searchSubscription();
+    this.toast.setMessage('ciao');
+
+    // this.searchSubscription();
   }
 
   metodo() {
@@ -79,119 +73,103 @@ export class AppComponent implements OnInit {
     return this.formAutocomplete?.get('autocomplete');
   }
 
-  getInputValue() {
-    // console.log(this.formAutocomplete.value.autocomplete)
-  }
+  //   onKeyDown(event: any) {
+  //     switch (event.key) {
+  //       case 'ArrowUp': {
+  //         if (this.searchResult.length > 0) {
+  //           this.selectedOption =
+  //             this.selectedOption > 0
+  //               ? this.selectedOption - 1
+  //               : this.searchResult.length - 1;
 
-  getAllUsers() {
-    this.http
-      .get('https://jsonplaceholder.typicode.com/users')
-      .subscribe((res: any) => {
-        let users = res;
-        // console.log(users)
-        users.forEach((user: any) => {
-          // console.log(user.name)
-          this.users.push(user.name);
-        });
-      });
-  }
-  onKeyDown(event: any) {
-    switch (event.key) {
-      case 'ArrowUp': {
-        if (this.searchResult.length > 0) {
-          this.selectedOption =
-            this.selectedOption > 0
-              ? this.selectedOption - 1
-              : this.searchResult.length - 1;
+  //           this.searchSubscribe.unsubscribe();
 
-          this.searchSubscribe.unsubscribe();
+  //           this.currentSelection = this.searchResult[this.selectedOption];
+  //           this.formAutocomplete.setValue({
+  //             autocomplete: this.risposta.concat(
+  //               this.currentSelection.substr(this.risposta.length)
+  //             ),
+  //           });
 
-          this.currentSelection = this.searchResult[this.selectedOption];
-          this.formAutocomplete.setValue({
-            autocomplete: this.risposta.concat(
-              this.currentSelection.substr(this.risposta.length)
-            ),
-          });
+  //           setTimeout(() => {
+  //             this.input.input.nativeElement.setSelectionRange(10000, 10000);
+  //           }, 0);
+  //           // console.log(this.input.input.nativeElement);
 
-          setTimeout(() => {
-            this.input.input.nativeElement.setSelectionRange(10000, 10000);
-          }, 0);
-          // console.log(this.input.input.nativeElement);
+  //         //   this.searchSubscription();
+  //           // this.selectedText = this.currentSelection;
+  //         }
 
-          this.searchSubscription();
-          // this.selectedText = this.currentSelection;
-        }
+  //         break;
+  //       }
+  //       case 'ArrowDown': {
+  //         if (this.searchResult.length > 0) {
+  //           if (this.selectedOption < this.searchResult.length - 1) {
+  //             this.selectedOption++;
+  //             //   this.selectedText = this.currentSelection;
+  //             this.currentSelection = this.searchResult[this.selectedOption];
+  //             this.searchSubscribe.unsubscribe();
 
-        break;
-      }
-      case 'ArrowDown': {
-        if (this.searchResult.length > 0) {
-          if (this.selectedOption < this.searchResult.length - 1) {
-            this.selectedOption++;
-            //   this.selectedText = this.currentSelection;
-            this.currentSelection = this.searchResult[this.selectedOption];
-            this.searchSubscribe.unsubscribe();
+  //             this.formAutocomplete.setValue({
+  //               autocomplete: this.risposta.concat(
+  //                 this.currentSelection.substr(this.risposta.length)
+  //               ),
+  //             });
 
-            this.formAutocomplete.setValue({
-              autocomplete: this.risposta.concat(
-                this.currentSelection.substr(this.risposta.length)
-              ),
-            });
+  //             // this.searchSubscription();
+  //           } else {
+  //             this.selectedOption = 0;
+  //             this.currentSelection = this.searchResult[this.selectedOption];
+  //             //   this.selectedText = this.currentSelection;
+  //             this.searchSubscribe.unsubscribe();
 
-            this.searchSubscription();
-          } else {
-            this.selectedOption = 0;
-            this.currentSelection = this.searchResult[this.selectedOption];
-            //   this.selectedText = this.currentSelection;
-            this.searchSubscribe.unsubscribe();
+  //             this.formAutocomplete.setValue({
+  //               autocomplete: this.risposta.concat(
+  //                 this.currentSelection.substr(this.risposta.length)
+  //               ),
+  //             });
 
-            this.formAutocomplete.setValue({
-              autocomplete: this.risposta.concat(
-                this.currentSelection.substr(this.risposta.length)
-              ),
-            });
+  //             // this.searchSubscription();
+  //           }
+  //         }
 
-            this.searchSubscription();
-          }
-        }
+  //         break;
+  //       }
+  //       case 'Enter': {
+  //         if (this.formAutocomplete.value.autocomplete !== '') {
+  //           this.currentSelection = this.searchResult[this.selectedOption];
 
-        break;
-      }
-      case 'Enter': {
-        if (this.formAutocomplete.value.autocomplete !== '') {
-          this.currentSelection = this.searchResult[this.selectedOption];
+  //           if (this.currentSelection.startsWith(this.formAutocomplete.value)) {
+  //           }
+  //           this.formAutocomplete.setValue({
+  //             autocomplete: this.risposta.concat(
+  //               this.currentSelection.substr(this.risposta.length)
+  //             ),
+  //           });
 
-          if (this.currentSelection.startsWith(this.formAutocomplete.value)) {
-          }
-          this.formAutocomplete.setValue({
-            autocomplete: this.risposta.concat(
-              this.currentSelection.substr(this.risposta.length)
-            ),
-          });
+  //           this.searchSubscribe.unsubscribe();
+  //           this.selected = true;
+  //           //   this.selectedOption = -1;
+  //           this.searchResult = [];
 
-          this.searchSubscribe.unsubscribe();
-          this.selected = true;
-          //   this.selectedOption = -1;
-          this.searchResult = [];
+  //           this.searchSubscription();
+  //         }
+  //         break;
+  //       }
+  //       default:
+  //         break;
+  //     }
+  //   }
+  //   onSelect(e: any) {
+  //     this.currentSelection = e;
+  //     //    console.log( this.currentSelection)
+  //     this.searchSubscribe.unsubscribe();
+  //     this.formAutocomplete.setValue({ autocomplete: this.currentSelection });
+  //     this.selected = true;
+  //     this.searchResult = [];
 
-          this.searchSubscription();
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  }
-  onSelect(e: any) {
-    this.currentSelection = e;
-    //    console.log( this.currentSelection)
-    this.searchSubscribe.unsubscribe();
-    this.formAutocomplete.setValue({ autocomplete: this.currentSelection });
-    this.selected = true;
-    this.searchResult = [];
-
-    this.searchSubscription();
-  }
+  // this.searchSubscription();
+  //   }
 
   //   searchSubscription() {
   //     this.searchSubscribe = this.formAutocomplete.valueChanges.subscribe(
@@ -219,55 +197,41 @@ export class AppComponent implements OnInit {
   //     );
   //   }
 
-  searchSubscription() {
-    this.searchSubscribe = this.formAutocomplete.valueChanges
-      .pipe(debounceTime(500))
-      .subscribe((inputValue: any) => {
-        this.isSearching = true;
+  searchSubscription(inputValue: any) {
+    this.isSearching = true;
+    // this.searchSubscribe = this.formAutocomplete.valueChanges
+    //   .pipe(debounceTime(500))
+    //   .subscribe((inputValue: any) => {
+    //     this.isSearching = true;
 
-        this.searchResult = [];
-        this.risposta = inputValue.autocomplete;
-        this.currentSelection = '';
+    this.searchResult = [];
+    //     this.risposta = inputValue.autocomplete;
+    //     this.currentSelection = '';
 
-        if (this.formAutocomplete.value.autocomplete !== ' ') {
-          this.searchService.startSearch(this.risposta).subscribe(
-            (res: any) => {
-              console.log(res);
-              res.albums.items.forEach((el: any) => {
-                if (
-                  el.name
-                    .toLowerCase()
-                    .startsWith(
-                      this.formAutocomplete.value.autocomplete.toLowerCase()
-                    )
-                ) {
-                  if (this.searchResult.length < 5) {
-                    this.searchResult.push(el.name);
-                    this.isSearching = false;
-                  }
-                }
-              });
-            },
-            (err) => {
-              console.log(err);
-              this.isSearching = false;
+    //     if (this.formAutocomplete.value.autocomplete !== ' ') {
+    this.searchService.startSearch(inputValue).subscribe(
+      (res: any) => {
+        this.showClear = true;
+        console.log(res);
+        res.albums.items.forEach((el: any) => {
+            this.isSearching = false;
+
+          if (el.name.toLowerCase().startsWith(inputValue)) {
+            if (this.searchResult.length < 5) {
+            //   this.isSearching = false;
+              this.searchResult.push(el.name);
             }
-          );
-        } else {
-          console.log('no');
-        }
+          }
+        });
+      },
+      (err) => {
+        console.log(err);
+        this.isSearching = false;
+        this.showClear = false;
+      }
+    );
 
-        this.selected = false;
-
-        if (
-          this.formAutocomplete.value.autocomplete !== '' &&
-          this.searchResult.length === 0
-        ) {
-          this.messaggio = 'Nessun risultato';
-        } else {
-          this.messaggio = '';
-        }
-      });
+    this.selected = false;
   }
 
   clearInput() {
