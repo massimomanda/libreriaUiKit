@@ -48,7 +48,14 @@
     {{ result }}
   </div>
 
-  <div *ngIf="searchResult.length === 0 && inputValue !== ''" class="no-result">
-    {{ messaggio }}
+  <div *ngIf="input">
+    <div
+      *ngIf="
+        searchResult.length === 0 && input.value.length > 0 && !isSearching
+      "
+      class="no-result"
+    >
+      Nessun risultato
+    </div>
   </div>
 </div>

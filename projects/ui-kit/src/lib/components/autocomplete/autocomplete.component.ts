@@ -20,7 +20,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('textLabel') textLabel: string = '';
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
-  @Input('showClear') showClear: boolean = false;
+  //   @Input('showClear') showClear: boolean = false;
   @Input('isSearching') isSearching: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
   @Input('height') height: string | undefined;
@@ -49,6 +49,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   selected: boolean = false;
   //   isSearching: boolean = false;
   messaggio: string = '';
+  showClear: boolean = false;
 
   constructor() {}
 
@@ -56,21 +57,23 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // this.input.nativeElement.value = this.value ?? '';
-    fromEvent(this.input.nativeElement, 'input')
+    fromEvent(this.input?.nativeElement, 'input')
       .pipe(
         pluck('target', 'value'),
-        tap((el) => console.log(el)),
+        tap((el) => {
+          console.log(el);
+          this.isSearching = true;
+        }),
+
         debounceTime(500)
       )
       .subscribe(
         (inputValue: any) => {
           //   this.searchResult = [];
-
-          this.isSearching = true;
-
+          this.isSearching = false;
           this.risposta = inputValue;
           this.currentSelection = '';
-
+          this.showClear = inputValue.length > 0;
           this.onInput.emit(inputValue);
 
           // this.searchService.startSearch(this.risposta).subscribe(
@@ -98,11 +101,14 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           // );
           this.selected = false;
 
-          if (inputValue !== '' && this.searchResult.length === 0) {
-            this.messaggio = 'Nessun risultato';
-          } else {
-            this.messaggio = '';
-          }
+        //   if (inputValue !== '' && this.searchResult.length === 0) {
+        //     this.messaggio = 'Nessun risultato';
+        //   } else {
+        //     this.messaggio = '';
+        //   }
+        },
+        (err) => {
+          this.isSearching = false;
         }
 
         //   if (
@@ -121,6 +127,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     // this.clear.emit(e);
     this.searchResult = [];
     this.input.nativeElement.value = '';
+    this.risposta = '';
     this.showClear = false;
     this.isSearching = false;
   }

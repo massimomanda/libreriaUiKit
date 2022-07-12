@@ -36,7 +36,7 @@ export class AppComponent implements OnInit {
   token!: string;
   evidenziaRicerca = false;
   isSearching: boolean = false;
-  showClear = false;
+//   showClear = false;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -199,6 +199,7 @@ export class AppComponent implements OnInit {
 
   searchSubscription(inputValue: any) {
     this.isSearching = true;
+    // this.showClear = inputValue.length > 0;
     // this.searchSubscribe = this.formAutocomplete.valueChanges
     //   .pipe(debounceTime(500))
     //   .subscribe((inputValue: any) => {
@@ -211,7 +212,6 @@ export class AppComponent implements OnInit {
     //     if (this.formAutocomplete.value.autocomplete !== ' ') {
     this.searchService.startSearch(inputValue).subscribe(
       (res: any) => {
-        this.showClear = true;
         console.log(res);
         res.albums.items.forEach((el: any) => {
             this.isSearching = false;
@@ -227,7 +227,7 @@ export class AppComponent implements OnInit {
       (err) => {
         console.log(err);
         this.isSearching = false;
-        this.showClear = false;
+        // this.showClear = false;
       }
     );
 
