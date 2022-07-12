@@ -21,6 +21,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
   @Input('showClear') showClear: boolean = false;
+  @Input('isSearching') isSearching: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
   @Input('height') height: string | undefined;
   @Input('for') for: string | undefined;
@@ -32,6 +33,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Output('blurForRer') blurForRed = new EventEmitter();
   @Input('value') value: string | undefined;
   @Input('autocomplete') autocomplete: string | undefined;
+  
 
   @Input('switchIcon') switchIcon: boolean = false;
   @Input('class') class!: string;

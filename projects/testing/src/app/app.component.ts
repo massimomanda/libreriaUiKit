@@ -36,6 +36,7 @@ export class AppComponent implements OnInit {
   risposta: string = '';
   token!: string;
   evidenziaRicerca = false;
+  isSearching: boolean = false;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -160,8 +161,7 @@ export class AppComponent implements OnInit {
         if (this.formAutocomplete.value.autocomplete !== '') {
           this.currentSelection = this.searchResult[this.selectedOption];
 
-          if(this.currentSelection.startsWith(this.formAutocomplete.value)) {
-
+          if (this.currentSelection.startsWith(this.formAutocomplete.value)) {
           }
           this.formAutocomplete.setValue({
             autocomplete: this.risposta.concat(
@@ -171,7 +171,7 @@ export class AppComponent implements OnInit {
 
           this.searchSubscribe.unsubscribe();
           this.selected = true;
-        //   this.selectedOption = -1;
+          //   this.selectedOption = -1;
           this.searchResult = [];
 
           this.searchSubscription();
@@ -220,22 +220,39 @@ export class AppComponent implements OnInit {
   //   }
 
   searchSubscription() {
-    this.searchSubscribe = this.formAutocomplete.valueChanges.pipe(debounceTime(500)).subscribe(
-      (inputValue: any) => {
+    this.searchSubscribe = this.formAutocomplete.valueChanges
+      .pipe(debounceTime(500))
+      .subscribe((inputValue: any) => {
+        this.isSearching = true;
+
         this.searchResult = [];
         this.risposta = inputValue.autocomplete;
         this.currentSelection = '';
 
         if (this.formAutocomplete.value.autocomplete !== ' ') {
-          this.searchService
-            .startSearch(this.risposta)
-            .subscribe((res: any) => {
+          this.searchService.startSearch(this.risposta).subscribe(
+            (res: any) => {
               console.log(res);
-              res.albums.items.slice(0, 5).forEach((el: any) => {
-                this.searchResult.push(el.name);
+              res.albums.items.forEach((el: any) => {
+                if (
+                  el.name
+                    .toLowerCase()
+                    .startsWith(
+                      this.formAutocomplete.value.autocomplete.toLowerCase()
+                    )
+                ) {
+                  if (this.searchResult.length < 5) {
+                    this.searchResult.push(el.name);
+                    this.isSearching = false;
+                  } 
+                }
               });
-              console.log(this.searchResult);
-            });
+            },
+            (err) => {
+              console.log(err);
+              this.isSearching = false;
+            }
+          );
         } else {
           console.log('no');
         }
@@ -250,8 +267,7 @@ export class AppComponent implements OnInit {
         } else {
           this.messaggio = '';
         }
-      }
-    );
+      });
   }
 
   clearInput() {
