@@ -12,7 +12,7 @@
       #input
     />
 
-    <div *ngIf="showClear" class="clear" (click)="onClear($event)">
+    <div *ngIf="showClear && !isSearching" class="clear" (click)="onClear($event)">
         
           <svg
             [ngClass]="class"
@@ -30,6 +30,10 @@
              
             />
           </svg>
+    </div>
+
+    <div *ngIf="isSearching && !showClear" class="loader-wrapper">
+        <lib-img-loader></lib-img-loader>
     </div>
   </div>
 

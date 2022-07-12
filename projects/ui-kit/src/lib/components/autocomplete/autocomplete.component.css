@@ -116,3 +116,8 @@ input.ng-invalid.ng-touched {
     display: flex;
     align-items: center;
 }
+
+.loader-wrapper {
+    width: 25px;
+    height: 25px;
+}

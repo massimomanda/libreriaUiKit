@@ -11,8 +11,9 @@
     (keydown)="onKeyDown($event)"
     [class]="'primary'"
     #input
-    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : false"
-  >
+    [showClear]="!isSearching && formAutocomplete.value.autocomplete !== ''"
+    [isSearching]="formAutocomplete.value.autocomplete !== '' && isSearching ? true : false"
+    >
     <div
       class="result"
       [class.selected]="selectedOption % searchResult.length === i"
@@ -34,6 +35,8 @@
 </div>
 
 <button (click)="onClick()">T O K E N</button>
+
+
 
 <!-- <div class="input">
   <lib-input
