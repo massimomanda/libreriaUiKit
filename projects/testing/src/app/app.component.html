@@ -1,5 +1,4 @@
-
-<lib-close-button [class]="'dark'"></lib-close-button>
+<!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
 <div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
   <lib-autocomplete
@@ -12,13 +11,12 @@
     (keydown)="onKeyDown($event)"
     [class]="'primary'"
     #input
-    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : 
-    false"
+    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : false"
   >
     <div
       class="result"
-      *ngFor="let result of searchResult; let i = index"
       [class.selected]="selectedOption % searchResult.length === i"
+      *ngFor="let result of searchResult; let i = index"
       (click)="onSelect(result)"
     >
       {{ result }}
@@ -29,13 +27,15 @@
     </div>
 
     <div *ngIf="currentSelection && !selected" class="risposta-wrapper">
-        {{risposta}}
+      {{ risposta }}
     </div>
     
   </lib-autocomplete>
 </div>
 
-<div class="input">
+<button (click)="onClick()">T O K E N</button>
+
+<!-- <div class="input">
   <lib-input
     class="primary"
     [type]="'password'"
@@ -84,4 +84,4 @@
   [border]="'1px solid green'"
   [placeholder]="'vediamo un pò se esce qualcosa!'"
   [resize]="''"
-></lib-textarea>
+></lib-textarea> -->

@@ -1,8 +1,11 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
+import { SearchService } from './services/search/search.service';
 
 import { ToastService } from './services/toast.service';
+import { TokenService } from './services/token/token.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -27,6 +30,8 @@ export class AppComponent implements OnInit {
   selected = false;
   selectedText: string = '';
   risposta: string = '';
+  token!: string;
+  evidenziaRicerca = false;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -38,8 +43,13 @@ export class AppComponent implements OnInit {
   //     subscriber.complete();
   //   }, 1000);
   // });
-  constructor(public toast:ToastService,
-    private _fb:FormBuilder){}
+  constructor(
+    public toast: ToastService,
+    private _fb: FormBuilder,
+    private http: HttpClient,
+    private tokenService: TokenService,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(){
 
@@ -81,7 +91,6 @@ export class AppComponent implements OnInit {
           // console.log(user.name)
           this.users.push(user.name);
         });
-        console.log(this.users);
       });
   }
   onKeyDown(event: any) {
@@ -149,16 +158,23 @@ export class AppComponent implements OnInit {
       case 'Enter': {
         if (this.formAutocomplete.value.autocomplete !== '') {
           this.currentSelection = this.searchResult[this.selectedOption];
+
+          if(this.currentSelection.startsWith(this.formAutocomplete.value)) {
+
+          }
           this.formAutocomplete.setValue({
             autocomplete: this.risposta.concat(
               this.currentSelection.substr(this.risposta.length)
             ),
           });
-          this.selected = true;
-          this.selectedOption = -1;
-          this.searchResult = [];
-        }
 
+          this.searchSubscribe.unsubscribe();
+          this.selected = true;
+        //   this.selectedOption = -1;
+          this.searchResult = [];
+
+          this.searchSubscription();
+        }
         break;
       }
       default:
@@ -176,23 +192,58 @@ export class AppComponent implements OnInit {
     this.searchSubscription();
   }
 
+  //   searchSubscription() {
+  //     this.searchSubscribe = this.formAutocomplete.valueChanges.subscribe(
+  //       (res: any) => {
+  //         this.risposta = res.autocomplete;
+  //         this.currentSelection = '';
+  //         this.searchResult = this.users
+  //           .filter(
+  //             (r: any) =>
+  //               r.toLowerCase().startsWith(this.risposta.toLowerCase()) &&
+  //               this.risposta !== ''
+  //           )
+  //           .slice(0, 5);
+
+  //         this.selected = false;
+  //         if (
+  //           this.formAutocomplete.value.autocomplete !== '' &&
+  //           this.searchResult.length === 0
+  //         ) {
+  //           this.messaggio = 'Nessun risultato';
+  //         } else {
+  //           this.messaggio = '';
+  //         }
+  //       }
+  //     );
+  //   }
+
   searchSubscription() {
-    this.searchSubscribe = this.formAutocomplete.valueChanges.subscribe(
-      (res: any) => {
-        this.risposta = res.autocomplete;
+    this.searchSubscribe = this.formAutocomplete.valueChanges.pipe(debounceTime(500)).subscribe(
+      (inputValue: any) => {
+        this.searchResult = [];
+        this.risposta = inputValue.autocomplete;
         this.currentSelection = '';
-        this.searchResult = this.users
-          .filter(
-            (r: any) =>
-              r.toLowerCase().startsWith(this.risposta.toLowerCase()) &&
-              this.risposta !== ''
-          )
-          .slice(0, 5);
+
+        if (this.formAutocomplete.value.autocomplete !== ' ') {
+          this.searchService
+            .startSearch(this.risposta)
+            .subscribe((res: any) => {
+              console.log(res);
+              res.albums.items.slice(0, 5).forEach((el: any) => {
+                this.searchResult.push(el.name);
+              });
+              console.log(this.searchResult);
+            });
+        } else {
+          console.log('no');
+        }
 
         this.selected = false;
+
         if (
           this.formAutocomplete.value.autocomplete !== '' &&
-          this.searchResult.length === 0
+          !(this.searchResult.length === 0)
         ) {
           this.messaggio = 'Nessun risultato';
         } else {
@@ -204,5 +255,17 @@ export class AppComponent implements OnInit {
 
   clearInput() {
     this.formAutocomplete.setValue({ autocomplete: '' });
+  }
+
+  onClick() {
+    this.tokenService.getToken().subscribe(
+      (token: any) => {
+        this.token = token.access_token;
+        localStorage.setItem('token', this.token);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }
