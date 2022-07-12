@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   selectedText: string = '';
   risposta: string = '';
   token!: string;
+  evidenziaRicerca = false;
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -158,11 +159,16 @@ export class AppComponent implements OnInit {
       case 'Enter': {
         if (this.formAutocomplete.value.autocomplete !== '') {
           this.currentSelection = this.searchResult[this.selectedOption];
+
+          if(this.currentSelection.startsWith(this.formAutocomplete.value)) {
+
+          }
           this.formAutocomplete.setValue({
             autocomplete: this.risposta.concat(
               this.currentSelection.substr(this.risposta.length)
             ),
           });
+
           this.searchSubscribe.unsubscribe();
           this.selected = true;
         //   this.selectedOption = -1;

@@ -1,4 +1,3 @@
-
 <!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
 <div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
@@ -12,8 +11,7 @@
     (keydown)="onKeyDown($event)"
     [class]="'primary'"
     #input
-    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : 
-    false"
+    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : false"
   >
     <div
       class="result"
@@ -29,7 +27,7 @@
     </div>
 
     <div *ngIf="currentSelection && !selected" class="risposta-wrapper">
-        {{risposta}}
+      {{ risposta }}
     </div>
     
   </lib-autocomplete>
