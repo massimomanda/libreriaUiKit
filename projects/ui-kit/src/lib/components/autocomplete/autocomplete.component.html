@@ -22,7 +22,7 @@
     {{ risposta }}
   </div>
 
-  <div class="result" [class.selected]="selectedOption % searchResult.length === i "
+  <div class="result" [class.selected]="selectedOption % searchResult.length === i || searchResult.length === 0"
     *ngFor="let result of searchResult; let i = index" (mousedown)="onSelect(result)">
     {{ result }}
   </div>
