@@ -3,6 +3,8 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -17,6 +19,20 @@ import { debounceTime, fromEvent, pluck, tap } from 'rxjs';
   styleUrls: ['./autocomplete.component.css'],
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
+ 
+  @HostBinding('attr.tabindex') tabindex = '0';
+  @HostListener('focusout', ['$event.target']) onBlur(target:any) {
+    // console.log('s')
+    this.risposta = '';
+    this.isSearching = false;
+    this.noResult = false;
+    this.searchResult = [];
+    if(this.input.nativeElement.value !== ''){
+
+      this.showClear = true;
+    }
+  }
+
   @Input('textLabel') textLabel: string = '';
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
@@ -42,6 +58,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Output('clear') clear = new EventEmitter();
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
   @Output('onInput') onInput = new EventEmitter();
+  @ViewChild('resultContainer') resultContainer: ElementRef | any;
 
   inputValue: any = '';
   selectedOption: any = -1;
@@ -80,7 +97,6 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           this.currentSelection = '';
           this.showClear = inputValue.length > 0;
           this.onInput.emit(inputValue);
-
           // this.searchService.startSearch(this.risposta).subscribe(
           //   (res: any) => {
           //     console.log(res);
@@ -219,7 +235,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           this.selected = true;
 
         //   this.searchSubscribe.unsubscribe();
-        //   this.selectedOption = -1;
+        // this.selectedOption = -1;
         this.searchResult = [];  
         //   this.searchSubscription();
         // }
@@ -232,22 +248,25 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   onSelect(e: any) {
     this.currentSelection = e;
-    //    console.log( this.currentSelection)
+       console.log( this.currentSelection)
     this.input.nativeElement.value = this.currentSelection;
     this.selected = true;
+    // this.selectedOption = -1;
     this.searchResult = [];
 
     // this.searchSubscription();
   }
 
-  onBlur(){
-    this.searchResult = [];
-    this.risposta = '';
-    this.isSearching = false;
-    this.noResult = false;
-    if(this.input.nativeElement.value !== ''){
+//   onBlur(e:any){
+// console.log(e)
+//     this.searchResult = [];
+//     this.risposta = '';
+//     this.isSearching = false;
+//     this.noResult = false;
+//     if(this.input.nativeElement.value !== ''){
 
-      this.showClear = true;
-    }
-  }
+//       this.showClear = true;
+//     }
+
+  // }
 }

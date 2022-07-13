@@ -1,9 +1,10 @@
-<div id="input-wrapper" [formGroup]="parentFormGroup">
+<div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onBlur($event.target)" >
+  <!-- (blur)="onBlur()"  -->
   <div class="wrapper">
     <label *ngIf="textLabel" [for]="for">{{ textLabel }}</label>
     <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type"
       [autocomplete]="autocomplete" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
-      (blur) = 'onBlur()' #input />
+      #input />
 
     <div *ngIf="showClear && !isSearching" class="clear" (click)="onClear()">
       <svg [ngClass]="class" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +23,7 @@
   </div>
 
   <div class="result" [class.selected]="selectedOption % searchResult.length === i"
-    *ngFor="let result of searchResult; let i = index" (click)="onSelect(result)">
+    *ngFor="let result of searchResult; let i = index" (mousedown)="onSelect(result)" #resultContainer >
     {{ result }}
   </div>
 
