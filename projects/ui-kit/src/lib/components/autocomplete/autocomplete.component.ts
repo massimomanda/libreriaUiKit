@@ -65,6 +65,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         tap((el) => {
 
           this.isSearching = true;
+          this.showClear = false
           // this.noResult = false
         }),
 
@@ -75,7 +76,6 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           //   this.searchResult = [];
           // this.noResult = false
           this.selected = false;
-          // this.isSearching = false;
           this.risposta = inputValue;
           this.currentSelection = '';
           this.showClear = inputValue.length > 0;
