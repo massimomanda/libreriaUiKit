@@ -41,10 +41,10 @@ input:focus,
 textarea:focus {
   outline: none;
 }
-#input-wrapper:focus-within{
- border: 1px solid #97a4bb;
+#input-wrapper:focus-within {
+  border: 1px solid #97a4bb;
 }
-input:focus-visible{
+input:focus-visible {
   outline: none;
 }
 
@@ -71,7 +71,7 @@ input.ng-invalid.ng-touched {
 }
 
 .icon-container svg {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .primary {
@@ -83,15 +83,15 @@ input.ng-invalid.ng-touched {
 }
 
 .error {
-    fill: #EB5757;
+  fill: #eb5757;
 }
 
 .disabled {
-    fill: #C1C1C1;
+  fill: #c1c1c1;
 }
 
 .outline {
-    stroke: black !important ;
+  stroke: black !important ;
 }
 
 .hide-password {
@@ -105,19 +105,49 @@ input.ng-invalid.ng-touched {
 }
 
 .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
 }
 
 .clear {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .loader-wrapper {
-    width: 25px;
-    height: 25px;
+  width: 22px;
+  height: 22px;
+}
+
+.risposta-wrapper {
+  position: absolute;
+  background: transparent;
+  top: 9px;
+  left: 19px;
+}
+
+.no-result {
+  padding: 0.6rem 1rem;
+  opacity: 0.5;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1rem;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+}
+
+.result.selected {
+  background: rgba(218, 218, 218, 0.521);
+  border-left: 3px solid #003594;
+}
+
+.result:hover {
+  background: rgba(218, 218, 218, 0.521);
+  cursor: default;
 }
