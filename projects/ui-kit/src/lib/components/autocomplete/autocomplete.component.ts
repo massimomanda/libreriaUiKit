@@ -94,13 +94,13 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         (inputValue: any) => {
           //   this.searchResult = [];
           // this.noResult = false
+          this.showClear = inputValue.length > 0;
           if (inputValue.length >= this.caratteri) {
 
             if (inputValue.trim().length !== 0) {
               this.selected = false;
               this.risposta = inputValue;
               this.currentSelection = '';
-              this.showClear = inputValue.length > 0;
               this.onInput.emit(inputValue.trim());
             }
           } else if (inputValue.length === 0) {

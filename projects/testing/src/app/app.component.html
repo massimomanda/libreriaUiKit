@@ -7,14 +7,14 @@
 <div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"
-    [placeholder]="'inizia ricerca...'"
+    [placeholder]="'Inizia ricerca...'"
     [parentFormGroup]="formAutocomplete"
     [controlName]="'autocomplete'"
     [name]="'autocomplete'"
     [for]="'autocomplete'"
     [class]="'primary'"
     [searchResult]="searchResult"
-    [isSearching]="isSearching ? true : false"
+    [isSearching]="isSearching"
     [noResult]="noResult ? true : false"
     [debounceValue]="500"
     [caratteri]="3"
