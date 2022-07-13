@@ -239,4 +239,15 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
     // this.searchSubscription();
   }
+
+  onBlur(){
+    this.searchResult = [];
+    this.risposta = '';
+    this.isSearching = false;
+    this.noResult = false;
+    if(this.input.nativeElement.value !== ''){
+
+      this.showClear = true;
+    }
+  }
 }
