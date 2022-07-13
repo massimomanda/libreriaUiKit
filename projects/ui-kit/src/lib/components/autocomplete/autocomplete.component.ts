@@ -22,6 +22,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Input('backgroundInput') backgroundInput: string | undefined;
   //   @Input('showClear') showClear: boolean = false;
   @Input('isSearching') isSearching: boolean = false;
+  @Input('noResult') noResult: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
   @Input('height') height: string | undefined;
   @Input('for') for: string | undefined;
@@ -57,12 +58,14 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     // this.input.nativeElement.value = this.value ?? '';
+    // this.noResult = false
     fromEvent(this.input?.nativeElement, 'input')
       .pipe(
         pluck('target', 'value'),
         tap((el) => {
-          console.log(el);
+
           this.isSearching = true;
+          // this.noResult = false
         }),
 
         debounceTime(500)
@@ -70,7 +73,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
       .subscribe(
         (inputValue: any) => {
           //   this.searchResult = [];
-          this.isSearching = false;
+          // this.noResult = false
+          this.selected = false;
+          // this.isSearching = false;
           this.risposta = inputValue;
           this.currentSelection = '';
           this.showClear = inputValue.length > 0;
@@ -99,7 +104,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           //     this.isSearching = false;
           //   }
           // );
-          this.selected = false;
+      
 
         //   if (inputValue !== '' && this.searchResult.length === 0) {
         //     this.messaggio = 'Nessun risultato';
@@ -130,6 +135,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.risposta = '';
     this.showClear = false;
     this.isSearching = false;
+    this.noResult = false;
   }
 
   onKeyDown(event: any) {
@@ -209,13 +215,12 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         //   this.formAutocomplete.setValue({
         this.input.nativeElement.value = this.risposta.concat(
           this.currentSelection.substr(this.risposta.length)
-        );
+          );
+          this.selected = true;
 
         //   this.searchSubscribe.unsubscribe();
-        this.selected = true;
         //   this.selectedOption = -1;
-        this.searchResult = [];
-
+        this.searchResult = [];  
         //   this.searchSubscription();
         // }
         break;
