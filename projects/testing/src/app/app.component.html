@@ -15,6 +15,9 @@
     [class]="'primary'"
     [searchResult]="searchResult"
     [isSearching]="isSearching ? true : false"
+    [noResult]="noResult ? true : false"
+    [debounceValue]="500"
+    [caratteri]="3"
     (onInput)="searchSubscription($event)"
     #input
     >
@@ -35,6 +38,7 @@
     
   </lib-autocomplete>
 </div>
+
 
 <!-- <button (click)="onClick()">T O K E N</button> -->
 <!-- <lib-button (click)="onClick()"></lib-button> -->
@@ -75,7 +79,7 @@
 <lib-toast [text]="'prova'" (action)="metodo()"></lib-toast>
 
 
-<lib-input [placeholder]="'ciao'"></lib-input>
+
 
 <lib-checkbox
   [image]="
@@ -93,3 +97,4 @@
   [placeholder]="'vediamo un pò se esce qualcosa!'"
   [resize]="''"
 ></lib-textarea> -->
+<!-- <lib-input [placeholder]="'ciao'"></lib-input> -->

@@ -3,6 +3,8 @@ import {
   Component,
   ElementRef,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Input,
   OnInit,
   Output,
@@ -17,11 +19,26 @@ import { debounceTime, fromEvent, pluck, tap } from 'rxjs';
   styleUrls: ['./autocomplete.component.css'],
 })
 export class AutocompleteComponent implements OnInit, AfterViewInit {
+
+  @HostBinding('attr.tabindex') tabindex = '0';
+  @HostListener('focusout', ['$event.target']) onFocusout() {
+    // console.log('s')
+    this.risposta = '';
+    this.isSearching = false;
+    this.noResult = false;
+    this.searchResult = [];
+    if (this.input.nativeElement.value !== '') {
+
+      this.showClear = true;
+    }
+  }
+
   @Input('textLabel') textLabel: string = '';
   @Input('placeholder') placeholder: string | undefined;
   @Input('backgroundInput') backgroundInput: string | undefined;
   //   @Input('showClear') showClear: boolean = false;
   @Input('isSearching') isSearching: boolean = false;
+  @Input('noResult') noResult: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
   @Input('height') height: string | undefined;
   @Input('for') for: string | undefined;
@@ -41,6 +58,8 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Output('clear') clear = new EventEmitter();
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
   @Output('onInput') onInput = new EventEmitter();
+  @Input('debounceValue') debounceValue!: number;
+  @Input('caratteri') caratteri!: number;
 
   inputValue: any = '';
   selectedOption: any = -1;
@@ -51,31 +70,44 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   messaggio: string = '';
   showClear: boolean = false;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     // this.input.nativeElement.value = this.value ?? '';
+    // this.noResult = false
+
     fromEvent(this.input?.nativeElement, 'input')
       .pipe(
         pluck('target', 'value'),
         tap((el) => {
-          console.log(el);
+
           this.isSearching = true;
+          this.showClear = false
+          // this.noResult = false
         }),
 
-        debounceTime(500)
+        debounceTime(this.debounceValue)
       )
       .subscribe(
         (inputValue: any) => {
           //   this.searchResult = [];
-          this.isSearching = false;
-          this.risposta = inputValue;
-          this.currentSelection = '';
-          this.showClear = inputValue.length > 0;
-          this.onInput.emit(inputValue);
+          // this.noResult = false
+          if (inputValue.length >= this.caratteri) {
 
+            if (inputValue.trim().length !== 0) {
+              this.selected = false;
+              this.risposta = inputValue;
+              this.currentSelection = '';
+              this.showClear = inputValue.length > 0;
+              this.onInput.emit(inputValue.trim());
+            }
+          } else if (inputValue.length === 0) {
+            this.searchResult = []
+          }
+
+          this.isSearching = false
           // this.searchService.startSearch(this.risposta).subscribe(
           //   (res: any) => {
           //     console.log(res);
@@ -99,13 +131,13 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           //     this.isSearching = false;
           //   }
           // );
-          this.selected = false;
 
-        //   if (inputValue !== '' && this.searchResult.length === 0) {
-        //     this.messaggio = 'Nessun risultato';
-        //   } else {
-        //     this.messaggio = '';
-        //   }
+
+          //   if (inputValue !== '' && this.searchResult.length === 0) {
+          //     this.messaggio = 'Nessun risultato';
+          //   } else {
+          //     this.messaggio = '';
+          //   }
         },
         (err) => {
           this.isSearching = false;
@@ -130,6 +162,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
     this.risposta = '';
     this.showClear = false;
     this.isSearching = false;
+    this.noResult = false;
   }
 
   onKeyDown(event: any) {
@@ -203,19 +236,24 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
       }
       case 'Enter': {
         // if (this.formAutocomplete.value.autocomplete !== '') {
-        this.currentSelection = this.searchResult[this.selectedOption];
-        this.onSelectedOption.emit(this.currentSelection);
+          if(this.searchResult.length === 1){
+
+            this.currentSelection = this.searchResult[0];
+            this.onSelectedOption.emit(this.currentSelection);
+          }else{
+            this.currentSelection = this.searchResult[this.selectedOption];
+            this.onSelectedOption.emit(this.currentSelection);
+          }
 
         //   this.formAutocomplete.setValue({
         this.input.nativeElement.value = this.risposta.concat(
           this.currentSelection.substr(this.risposta.length)
         );
+        this.selected = true;
 
         //   this.searchSubscribe.unsubscribe();
-        this.selected = true;
-        //   this.selectedOption = -1;
+        this.selectedOption = -1;
         this.searchResult = [];
-
         //   this.searchSubscription();
         // }
         break;
@@ -227,11 +265,24 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   onSelect(e: any) {
     this.currentSelection = e;
-    //    console.log( this.currentSelection)
     this.input.nativeElement.value = this.currentSelection;
     this.selected = true;
+    this.selectedOption = -1;
     this.searchResult = [];
 
     // this.searchSubscription();
   }
+
+  //   onBlur(e:any){
+  // console.log(e)
+  //     this.searchResult = [];
+  //     this.risposta = '';
+  //     this.isSearching = false;
+  //     this.noResult = false;
+  //     if(this.input.nativeElement.value !== ''){
+
+  //       this.showClear = true;
+  //     }
+
+  // }
 }
