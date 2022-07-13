@@ -1,5 +1,4 @@
 <div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onFocusout()" >
-  <!-- (blur)="onBlur()"  -->
   <div class="wrapper">
     <label *ngIf="textLabel" [for]="for">{{ textLabel }}</label>
     <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type"
@@ -13,7 +12,8 @@
       </svg>
     </div>
 
-    <div *ngIf="isSearching && !showClear" class="loader-wrapper">
+
+    <div *ngIf="isSearching && !showClear && input.value.length >= caratteriMinimiRicerca" class="loader-wrapper">
       <lib-img-loader></lib-img-loader>
     </div>
   </div>
@@ -27,11 +27,9 @@
     {{ result }}
   </div>
 
+
   <div *ngIf="input">
-    <!-- <div *ngIf="
-        searchResult.length === 0 && input.value.length > 0 && !isSearching && !selected
-      " class="no-result"> -->
-      <div *ngIf="input.value.length > 0 && noResult && !isSearching" class="no-result">
+      <div *ngIf="input.value.length > 0 && noResult && !isSearching && input.value.length > caratteriMinimiRicerca" class="no-result">
       Nessun risultato
     </div>
   </div>
