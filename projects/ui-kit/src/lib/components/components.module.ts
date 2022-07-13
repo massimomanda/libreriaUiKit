@@ -11,6 +11,7 @@ import { CheckboxComponent } from './checkbox/checkbox.component';
 import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CloseButtonComponent } from './close-button/close-button.component';
+import { ImgLoaderComponent } from './img-loader/img-loader.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CloseButtonComponent } from './close-button/close-button.component';
     TextareaComponent,
     AutocompleteComponent,
     CloseButtonComponent,
+    ImgLoaderComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [
@@ -35,6 +37,7 @@ import { CloseButtonComponent } from './close-button/close-button.component';
     CheckboxComponent,
     AutocompleteComponent,
     CloseButtonComponent,
+    ImgLoaderComponent,
   ],
 })
 export class ComponentsModule {}

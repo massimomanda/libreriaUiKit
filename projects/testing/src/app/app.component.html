@@ -1,6 +1,10 @@
 <!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
-<div class="input" [formGroup]="formAutocomplete" (keyup)="getInputValue()">
+<div id="button">
+    <lib-button (click)="onClick()" [textButton]="'Token'" [class]="'primary'" [disabled]="false"></lib-button>
+</div>
+
+<div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"
     [placeholder]="'inizia ricerca...'"
@@ -8,12 +12,13 @@
     [controlName]="'autocomplete'"
     [name]="'autocomplete'"
     [for]="'autocomplete'"
-    (keydown)="onKeyDown($event)"
     [class]="'primary'"
+    [searchResult]="searchResult"
+    [isSearching]="isSearching ? true : false"
+    (onInput)="searchSubscription($event)"
     #input
-    [showClear]="formAutocomplete.value.autocomplete !== '' ? true : false"
-  >
-    <div
+    >
+    <!-- <div
       class="result"
       [class.selected]="selectedOption % searchResult.length === i"
       *ngFor="let result of searchResult; let i = index"
@@ -24,16 +29,19 @@
 
     <div class="no-result" *ngIf="messaggio">
       {{ messaggio }}
-    </div>
+    </div> -->
 
-    <div *ngIf="currentSelection && !selected" class="risposta-wrapper">
-      {{ risposta }}
-    </div>
+    
     
   </lib-autocomplete>
 </div>
 
-<button (click)="onClick()">T O K E N</button>
+<!-- <button (click)="onClick()">T O K E N</button> -->
+<!-- <lib-button (click)="onClick()"></lib-button> -->
+
+
+
+
 
 <!-- <div class="input">
   <lib-input
