@@ -1,4 +1,4 @@
-<div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onBlur($event.target)" >
+<div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onFocusout()" >
   <!-- (blur)="onBlur()"  -->
   <div class="wrapper">
     <label *ngIf="textLabel" [for]="for">{{ textLabel }}</label>

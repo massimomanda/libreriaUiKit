@@ -21,7 +21,7 @@ import { debounceTime, fromEvent, pluck, tap } from 'rxjs';
 export class AutocompleteComponent implements OnInit, AfterViewInit {
  
   @HostBinding('attr.tabindex') tabindex = '0';
-  @HostListener('focusout', ['$event.target']) onBlur(target:any) {
+  @HostListener('focusout', ['$event.target']) onFocusout() {
     // console.log('s')
     this.risposta = '';
     this.isSearching = false;
@@ -92,11 +92,17 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         (inputValue: any) => {
           //   this.searchResult = [];
           // this.noResult = false
-          this.selected = false;
-          this.risposta = inputValue;
-          this.currentSelection = '';
-          this.showClear = inputValue.length > 0;
-          this.onInput.emit(inputValue);
+          if(inputValue.trim().length !== 0){
+            this.selected = false;
+            this.risposta = inputValue;
+            this.currentSelection = '';
+            this.showClear = inputValue.length > 0;
+            this.onInput.emit(inputValue.trim());
+          }else if(inputValue.length === 0){
+            this.searchResult = []
+          }
+
+          this.isSearching =false 
           // this.searchService.startSearch(this.risposta).subscribe(
           //   (res: any) => {
           //     console.log(res);
@@ -235,7 +241,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           this.selected = true;
 
         //   this.searchSubscribe.unsubscribe();
-        // this.selectedOption = -1;
+        this.selectedOption = -1;
         this.searchResult = [];  
         //   this.searchSubscription();
         // }
@@ -248,10 +254,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   onSelect(e: any) {
     this.currentSelection = e;
-       console.log( this.currentSelection)
     this.input.nativeElement.value = this.currentSelection;
     this.selected = true;
-    // this.selectedOption = -1;
+    this.selectedOption = -1;
     this.searchResult = [];
 
     // this.searchSubscription();

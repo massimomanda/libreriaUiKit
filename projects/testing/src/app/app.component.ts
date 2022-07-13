@@ -215,7 +215,6 @@ export class AppComponent implements OnInit {
         this.noResult = false
         if(res.albums.items.length === 0){
 
-          console.log(res);
           this.noResult = true
           this.isSearching = false
         }
