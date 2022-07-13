@@ -16,6 +16,8 @@
     [searchResult]="searchResult"
     [isSearching]="isSearching ? true : false"
     [noResult]="noResult ? true : false"
+    [debounceValue]="500"
+    [caratteri]="3"
     (onInput)="searchSubscription($event)"
     #input
     >

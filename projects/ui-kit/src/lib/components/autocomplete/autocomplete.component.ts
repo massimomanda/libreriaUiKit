@@ -58,7 +58,8 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Output('clear') clear = new EventEmitter();
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
   @Output('onInput') onInput = new EventEmitter();
-  @ViewChild('resultContainer') resultContainer: ElementRef | any;
+  @Input('debounceValue') debounceValue!: number;
+  @Input('caratteri') caratteri!: number;
 
   inputValue: any = '';
   selectedOption: any = -1;
@@ -76,6 +77,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // this.input.nativeElement.value = this.value ?? '';
     // this.noResult = false
+
     fromEvent(this.input?.nativeElement, 'input')
       .pipe(
         pluck('target', 'value'),
@@ -86,21 +88,24 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           // this.noResult = false
         }),
 
-        debounceTime(500)
+        debounceTime(this.debounceValue)
       )
       .subscribe(
         (inputValue: any) => {
           //   this.searchResult = [];
           // this.noResult = false
-          if(inputValue.trim().length !== 0){
-            this.selected = false;
-            this.risposta = inputValue;
-            this.currentSelection = '';
-            this.showClear = inputValue.length > 0;
-            this.onInput.emit(inputValue.trim());
-          }else if(inputValue.length === 0){
-            this.searchResult = []
-          }
+              if(inputValue.length >= this.caratteri){
+      
+                if(inputValue.trim().length !== 0){
+                  this.selected = false;
+                  this.risposta = inputValue;
+                  this.currentSelection = '';
+                  this.showClear = inputValue.length > 0;
+                  this.onInput.emit(inputValue.trim());
+                }else if(inputValue.length === 0){
+                  this.searchResult = []
+                }
+    }
 
           this.isSearching =false 
           // this.searchService.startSearch(this.risposta).subscribe(
