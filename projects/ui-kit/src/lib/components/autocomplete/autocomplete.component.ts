@@ -58,7 +58,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
   @Output('onInput') onInput = new EventEmitter();
   @Input('debounceValue') debounceValue: number = 500;
-  @Input('caratteriMinimiRicerca') caratteriMinimiRicerca: number = 0;
+  @Input('minCharactersToStartSearch') minCharactersToStartSearch: number = 0;
 
   inputValue: any = '';
   selectedOption: any = -1;
@@ -94,7 +94,7 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
           //   this.searchResult = [];
           // this.noResult = false
           this.showClear = inputValue.length > 0;
-          if (inputValue.length >= this.caratteriMinimiRicerca && inputValue.length !== 0) {
+          if (inputValue.length >= this.minCharactersToStartSearch && inputValue.length !== 0) {
 
             if (inputValue.trim().length !== 0) {
               this.selected = false;
