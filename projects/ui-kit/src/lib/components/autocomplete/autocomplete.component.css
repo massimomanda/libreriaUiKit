@@ -151,3 +151,12 @@ input.ng-invalid.ng-touched {
   background: rgba(218, 218, 218, 0.521);
   cursor: default;
 }
+.messageCaratteri{
+  display: flex;
+  flex-direction: column;
+  padding: 0.6rem 1rem;
+  opacity: 0.5;
+}
+.label{
+  padding-left:1.2rem;
+}

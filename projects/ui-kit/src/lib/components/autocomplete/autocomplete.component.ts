@@ -34,32 +34,31 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   }
 
   @Input('textLabel') textLabel: string = '';
-  @Input('placeholder') placeholder: string | undefined;
-  @Input('backgroundInput') backgroundInput: string | undefined;
-  //   @Input('showClear') showClear: boolean = false;
+  @Input('placeholder') placeholder: string = '';
+  @Input('backgroundInput') backgroundInput: string= '';
   @Input('isSearching') isSearching: boolean = false;
   @Input('noResult') noResult: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
-  @Input('height') height: string | undefined;
-  @Input('for') for: string | undefined;
-  @Input('name') name: string | undefined;
+  @Input('height') height: string = '';
+  @Input('for') for: string = '';
+  @Input('name') name: string = '';
   @Input('controlName') controlName: string = '';
   @Input('parentFormGroup') parentFormGroup: FormGroup = {} as FormGroup;
-  @Input('type') type: string | undefined;
+  @Input('type') type: string  = '';
   @ViewChild('input') input: ElementRef | any;
   @Output('blurForRer') blurForRed = new EventEmitter();
-  @Input('value') value: string | undefined;
-  @Input('autocomplete') autocomplete: string | undefined;
+  @Input('value') value: string = '';
+  @Input('autocomplete') autocomplete: string  = '';
   @Input('searchResult') searchResult: any[] = [];
 
   @Input('switchIcon') switchIcon: boolean = false;
-  @Input('class') class!: string;
+  @Input('class') class: string  = '';
 
   @Output('clear') clear = new EventEmitter();
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
   @Output('onInput') onInput = new EventEmitter();
-  @Input('debounceValue') debounceValue!: number;
-  @Input('caratteri') caratteri!: number;
+  @Input('debounceValue') debounceValue: number = 500;
+  @Input('minCharactersToStartSearch') minCharactersToStartSearch: number = 0;
 
   inputValue: any = '';
   selectedOption: any = -1;
@@ -94,13 +93,13 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
         (inputValue: any) => {
           //   this.searchResult = [];
           // this.noResult = false
-          if (inputValue.length >= this.caratteri) {
+          this.showClear = inputValue.length > 0;
+          if (inputValue.length >= this.minCharactersToStartSearch && inputValue.length !== 0) {
 
             if (inputValue.trim().length !== 0) {
               this.selected = false;
               this.risposta = inputValue;
               this.currentSelection = '';
-              this.showClear = inputValue.length > 0;
               this.onInput.emit(inputValue.trim());
             }
           } else if (inputValue.length === 0) {
