@@ -2,6 +2,7 @@
 
 ![Angular logo](https://raw.githubusercontent.com/angular/angular/main/aio/src/assets/images/logos/angular/angular.png)
 
+
 This is a customizable autocomplete component made with Angular 14.
 
 ---
@@ -64,8 +65,19 @@ You can now use the `<lib-autocomplete>` HTML tag anywhere in your project to in
 
 ```sh
 <lib-autocomplete 
-
-></lib-autocomplete>
+    [placeholder]="'Type something...'"
+    [parentFormGroup]="formAutocomplete"
+    [controlName]="'autocomplete'"
+    [name]="'autocomplete'"
+    [for]="'autocomplete'"
+    [class]="'primary'"
+    [searchResult]="searchResult"
+    [isSearching]="isSearchingFlag"
+    [debounceValue]="500"
+    [minCharactersToStartSearch]="3"
+    (onInput)="startSearch($event)"
+>
+</lib-autocomplete>
 ```
 In order to customize this component you can use various property bindings in your HTML that you can find listed below.
  
@@ -104,11 +116,9 @@ In order to customize this component you can use various property bindings in yo
 
 | Property | Type | Description |
 | ----------- | ----------- | ----------- |
-| `(onInput)` | EventEmitter | Can be used to read i`nput value changes` |
+| `(onInput)` | EventEmitter | Can be used to read `input value changes` |
 | `(onSelectedOption)` | EventEmitter | Can be used to `read the selected option from the results` |
 
-
-[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
    [repo]: <https://github.com/massimomanda/libreriaUiKit>
    [Angular 14]: <https://angular.io/>
