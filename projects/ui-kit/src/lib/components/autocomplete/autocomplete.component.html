@@ -1,6 +1,7 @@
+<label *ngIf="textLabel" [for]="for" class="label">{{ textLabel }}</label>
 <div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onFocusout()" >
   <div class="wrapper">
-    <label *ngIf="textLabel" [for]="for">{{ textLabel }}</label>
+
     <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type"
       [autocomplete]="autocomplete" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
       #input />

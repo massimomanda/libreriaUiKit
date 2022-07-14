@@ -34,26 +34,25 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
   }
 
   @Input('textLabel') textLabel: string = '';
-  @Input('placeholder') placeholder: string | undefined;
-  @Input('backgroundInput') backgroundInput: string | undefined;
-  //   @Input('showClear') showClear: boolean = false;
+  @Input('placeholder') placeholder: string = '';
+  @Input('backgroundInput') backgroundInput: string= '';
   @Input('isSearching') isSearching: boolean = false;
   @Input('noResult') noResult: boolean = false;
   @Output('valueInput') valueInput = new EventEmitter();
-  @Input('height') height: string | undefined;
-  @Input('for') for: string | undefined;
-  @Input('name') name: string | undefined;
+  @Input('height') height: string = '';
+  @Input('for') for: string = '';
+  @Input('name') name: string = '';
   @Input('controlName') controlName: string = '';
   @Input('parentFormGroup') parentFormGroup: FormGroup = {} as FormGroup;
-  @Input('type') type: string | undefined;
+  @Input('type') type: string  = '';
   @ViewChild('input') input: ElementRef | any;
   @Output('blurForRer') blurForRed = new EventEmitter();
-  @Input('value') value: string | undefined;
-  @Input('autocomplete') autocomplete: string | undefined;
+  @Input('value') value: string = '';
+  @Input('autocomplete') autocomplete: string  = '';
   @Input('searchResult') searchResult: any[] = [];
 
   @Input('switchIcon') switchIcon: boolean = false;
-  @Input('class') class!: string;
+  @Input('class') class: string  = '';
 
   @Output('clear') clear = new EventEmitter();
   @Output('onSelectedOption') onSelectedOption = new EventEmitter();
