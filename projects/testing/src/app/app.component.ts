@@ -30,12 +30,12 @@ export class AppComponent implements OnInit {
   selectedOption: number = -1;
   currentSelection: any;
   searchSubscribe: any;
-  selected = false;
   selectedText: string = '';
   risposta: string = '';
   token!: string;
   evidenziaRicerca = false;
   isSearching: boolean = false;
+  noResult:boolean = false;
 //   showClear = false;
 
   // pluto: Subject<any> = new Subject()
@@ -212,13 +212,18 @@ export class AppComponent implements OnInit {
     //     if (this.formAutocomplete.value.autocomplete !== ' ') {
     this.searchService.startSearch(inputValue).subscribe(
       (res: any) => {
-        console.log(res);
-        res.albums.items.forEach((el: any) => {
-            this.isSearching = false;
+        this.noResult = false
+        if(res.albums.items.length === 0){
 
+          this.noResult = true
+          this.isSearching = false
+        }
+        res.albums.items.forEach((el: any) => {
+          this.isSearching = false;
+          
           if (el.name.toLowerCase().startsWith(inputValue)) {
             if (this.searchResult.length < 5) {
-            //   this.isSearching = false;
+              //   this.isSearching = false;
               this.searchResult.push(el.name);
             }
           }
@@ -231,7 +236,6 @@ export class AppComponent implements OnInit {
       }
     );
 
-    this.selected = false;
   }
 
   clearInput() {

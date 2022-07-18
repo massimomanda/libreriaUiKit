@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'lib-welcome',
   templateUrl: './welcome.component.html',
@@ -8,9 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class WelcomeComponent implements OnInit {
   salutando: boolean = false;
   @Input('name') name!:string
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   saluta() {
@@ -19,5 +22,7 @@ export class WelcomeComponent implements OnInit {
       this.salutando = false
     }, 3000);
   }
+
+  
 
 }

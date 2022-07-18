@@ -1,8 +1,10 @@
-import { HttpClientJsonpModule } from '@angular/common/http';
+import {  HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ComponentsModule } from 'projects/ui-kit/src/public-api';
+import { ComponentsModule } from 'uiKit';
+
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +18,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     ComponentsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,14 +7,17 @@
 <div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"
-    [placeholder]="'inizia ricerca...'"
+    [placeholder]="'Inizia ricerca...'"
     [parentFormGroup]="formAutocomplete"
     [controlName]="'autocomplete'"
     [name]="'autocomplete'"
     [for]="'autocomplete'"
     [class]="'primary'"
     [searchResult]="searchResult"
-    [isSearching]="isSearching ? true : false"
+    [isSearching]="isSearching"
+    [noResult]="noResult ? true : false"
+    [debounceValue]="500"
+    [minCharactersToStartSearch]="3"
     (onInput)="searchSubscription($event)"
     #input
     >
@@ -36,6 +39,7 @@
   </lib-autocomplete>
 </div>
 
+
 <!-- <button (click)="onClick()">T O K E N</button> -->
 <!-- <lib-button (click)="onClick()"></lib-button> -->
 
@@ -53,8 +57,7 @@
   ></lib-input>
 </div>
 
-<lib-welcome [name]="'Mario Rossi'"></lib-welcome>
-<div id="button">
+
 
   <lib-button [textButton]="'ciao'" [class]="'primary'" [disabled]="false"></lib-button>
 </div>
@@ -75,7 +78,7 @@
 <lib-toast [text]="'prova'" (action)="metodo()"></lib-toast>
 
 
-<lib-input [placeholder]="'ciao'"></lib-input>
+
 
 <lib-checkbox
   [image]="
@@ -93,3 +96,15 @@
   [placeholder]="'vediamo un pò se esce qualcosa!'"
   [resize]="''"
 ></lib-textarea> -->
+<!-- <lib-input [placeholder]="'ciao'"></lib-input> -->
+<!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
+<div id="button"> -->
+  <div class="input">
+    <lib-input
+      class="primary"
+      [type]="'password'"
+      [placeholder]="'inserisci password'"
+      [togglePasswordVisibility]="true"
+      [height]="'40px'"
+    ></lib-input>
+  </div>
