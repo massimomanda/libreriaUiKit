@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as dayjs from 'dayjs'
 
 @Component({
   selector: 'lib-welcome',
@@ -8,9 +9,11 @@ import { Component, Input, OnInit } from '@angular/core';
 export class WelcomeComponent implements OnInit {
   salutando: boolean = false;
   @Input('name') name!:string
+  data: string = ''
   constructor() { }
 
   ngOnInit(): void {
+    this.data = dayjs().format()
   }
 
   saluta() {
@@ -19,5 +22,7 @@ export class WelcomeComponent implements OnInit {
       this.salutando = false
     }, 3000);
   }
+
+  
 
 }
