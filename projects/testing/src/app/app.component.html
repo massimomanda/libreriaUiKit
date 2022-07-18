@@ -17,7 +17,7 @@
     [isSearching]="isSearching"
     [noResult]="noResult ? true : false"
     [debounceValue]="500"
-    [caratteriMinimiRicerca]="3"
+    [minCharactersToStartSearch]="3"
     (onInput)="searchSubscription($event)"
     #input
     >
@@ -57,8 +57,7 @@
   ></lib-input>
 </div>
 
-<lib-welcome [name]="'Mario Rossi'"></lib-welcome>
-<div id="button">
+
 
   <lib-button [textButton]="'ciao'" [class]="'primary'" [disabled]="false"></lib-button>
 </div>
@@ -98,3 +97,14 @@
   [resize]="''"
 ></lib-textarea> -->
 <!-- <lib-input [placeholder]="'ciao'"></lib-input> -->
+<!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
+<div id="button"> -->
+  <div class="input">
+    <lib-input
+      class="primary"
+      [type]="'password'"
+      [placeholder]="'inserisci password'"
+      [togglePasswordVisibility]="true"
+      [height]="'40px'"
+    ></lib-input>
+  </div>

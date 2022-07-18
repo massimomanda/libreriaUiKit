@@ -1,8 +1,8 @@
+<label *ngIf="textLabel" [for]="for" class="label">{{ textLabel }}</label>
 <div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onFocusout()" >
   <div class="wrapper">
-    <label *ngIf="textLabel" [for]="for">{{ textLabel }}</label>
-    <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type"
-      [autocomplete]="autocomplete" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
+
+    <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
       #input />
 
     <div *ngIf="showClear && !isSearching" class="clear" (click)="onClear()">
@@ -13,7 +13,7 @@
     </div>
 
 
-    <div *ngIf="isSearching && !showClear && input.value.length >= caratteriMinimiRicerca" class="loader-wrapper">
+    <div *ngIf="isSearching && !showClear && input.value.length >= minCharactersToStartSearch" class="loader-wrapper">
       <lib-img-loader></lib-img-loader>
     </div>
   </div>
@@ -29,7 +29,7 @@
 
 
   <div *ngIf="input">
-      <div *ngIf="input.value.length > 0 && noResult && !isSearching && input.value.length > caratteriMinimiRicerca" class="no-result">
+      <div *ngIf="input.value.length > 0 && noResult && !isSearching && input.value.length > minCharactersToStartSearch" class="no-result">
       Nessun risultato
     </div>
   </div>

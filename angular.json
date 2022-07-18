@@ -133,7 +133,6 @@
       }
     }
   },
-  "defaultProject": "uiKit",
   "cli": {
     "analytics": false
   }
