@@ -24,3 +24,6 @@ export * from './lib/components/close-button/close-button.component';
 
 export * from './lib/components/img-loader/img-loader.component';
 
+export * from './lib/components/select/select.component';
+
+
