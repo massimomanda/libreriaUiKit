@@ -2,8 +2,7 @@
 <div id="input-wrapper" [formGroup]="parentFormGroup" tabindex="0"  (focusout)="onFocusout()" >
   <div class="wrapper">
 
-    <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type"
-      [autocomplete]="autocomplete" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
+    <input [placeholder]="placeholder" [ngStyle]="{ background: backgroundInput, height: height }" [type]="type" [formControlName]="controlName" [name]="name" (keydown)="onKeyDown($event)"
       #input />
 
     <div *ngIf="showClear && !isSearching" class="clear" (click)="onClear()">
