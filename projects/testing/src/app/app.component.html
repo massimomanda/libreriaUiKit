@@ -97,7 +97,7 @@
 <!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
 <div id="button"> -->
 <div class="input">
-  <lib-input
+  <!-- <lib-input
     class="primary"
     [type]="'text'"
     [placeholder]="'inserisci password'"
@@ -111,5 +111,7 @@
     [placeholder]="'inserisci password'"
     (calendarClick)="openDatePicker()"
     [togglePasswordVisibility]="true"
-  ></lib-input>
+  ></lib-input> -->
+  <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
 </div>
+
