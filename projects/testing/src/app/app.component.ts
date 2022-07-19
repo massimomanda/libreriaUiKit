@@ -253,4 +253,8 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  openDatePicker() {
+    console.log('ciao')
+  }
 }
