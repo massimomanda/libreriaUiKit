@@ -10,7 +10,7 @@
 
 #input-wrapper {
   position: relative;
-  width: 100%;
+  /* width: 100%; */
   height: inherit;
   border-radius: 10px;
   color: black;
@@ -19,6 +19,7 @@
   overflow: hidden;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 0.5rem 1rem;
 }
 
