@@ -83,7 +83,6 @@ export class SelectComponent implements OnInit {
         this.currentOption = this.options[this.keyboardOption];
         this.optionsToggle();
         this.selectedOption.emit(this.currentOption);
-        console.log(this.selectedOption);
         
         break;
       }
