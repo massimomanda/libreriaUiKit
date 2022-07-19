@@ -35,8 +35,28 @@ export class AppComponent implements OnInit {
   token!: string;
   evidenziaRicerca = false;
   isSearching: boolean = false;
-  noResult:boolean = false;
-//   showClear = false;
+  noResult: boolean = false;
+  //   showClear = false;
+
+  opzioniProva = [
+    {
+      nome: 'Ilaria',
+    },
+    {
+      nome: 'Luigi',
+    },
+    {
+      nome: 'Costa',
+    },
+    {
+      nome: 'Antonio',
+    },
+    {
+        nome: 'Massimo',
+      },
+  ];
+
+  opzioniFiltrate: any = []
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -57,6 +77,11 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+
+    this.opzioniProva.forEach((e:any) => {
+        this.opzioniFiltrate.push(e.nome)
+    })
+
     this.formAutocomplete = this._fb.group({
       autocomplete: [''],
     });
@@ -212,15 +237,14 @@ export class AppComponent implements OnInit {
     //     if (this.formAutocomplete.value.autocomplete !== ' ') {
     this.searchService.startSearch(inputValue).subscribe(
       (res: any) => {
-        this.noResult = false
-        if(res.albums.items.length === 0){
-
-          this.noResult = true
-          this.isSearching = false
+        this.noResult = false;
+        if (res.albums.items.length === 0) {
+          this.noResult = true;
+          this.isSearching = false;
         }
         res.albums.items.forEach((el: any) => {
           this.isSearching = false;
-          
+
           if (el.name.toLowerCase().startsWith(inputValue)) {
             if (this.searchResult.length < 5) {
               //   this.isSearching = false;
@@ -235,7 +259,6 @@ export class AppComponent implements OnInit {
         // this.showClear = false;
       }
     );
-
   }
 
   clearInput() {
@@ -252,5 +275,13 @@ export class AppComponent implements OnInit {
         console.log(err);
       }
     );
+  }
+
+  openDatePicker() {
+    console.log('ciao');
+  }
+
+  onReceivedOption(e: any) {
+    console.log(e)
   }
 }

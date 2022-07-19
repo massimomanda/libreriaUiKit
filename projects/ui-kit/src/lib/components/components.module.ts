@@ -12,6 +12,7 @@ import { AutocompleteComponent } from './autocomplete/autocomplete.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CloseButtonComponent } from './close-button/close-button.component';
 import { ImgLoaderComponent } from './img-loader/img-loader.component';
+import { SelectComponent } from './select/select.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ImgLoaderComponent } from './img-loader/img-loader.component';
     AutocompleteComponent,
     CloseButtonComponent,
     ImgLoaderComponent,
+    SelectComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, HttpClientModule, FormsModule],
   exports: [
@@ -38,6 +40,7 @@ import { ImgLoaderComponent } from './img-loader/img-loader.component';
     AutocompleteComponent,
     CloseButtonComponent,
     ImgLoaderComponent,
+    SelectComponent,
   ],
 })
 export class ComponentsModule {}

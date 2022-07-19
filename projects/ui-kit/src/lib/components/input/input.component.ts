@@ -16,25 +16,28 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./input.component.css'],
 })
 export class InputComponent implements OnInit, AfterViewInit {
-  @Input('textLabel') textLabel: string | undefined;
-  @Input('placeholder') placeholder: string | undefined;
-  @Input('backgroundInput') backgroundInput: string | undefined;
+  @Input('textLabel') textLabel: string = '';
+  @Input('placeholder') placeholder: string = '';
+  @Input('backgroundInput') backgroundInput: string = '';
   @Output('valueInput') valueInput = new EventEmitter();
-  @Input('height') height: string | undefined;
-  @Input('for') for: string | undefined;
-  @Input('name') name: string | undefined;
+  @Output('calendarClick') calendarClick = new EventEmitter();
+  @Input('height') height: string = '';
+  @Input('for') for: string = '';
+  @Input('name') name: string = '';
   @Input('controlName') controlName: string = '';
   @Input('parentFormGroup') parentFormGroup: FormGroup = {} as FormGroup;
-  @Input('type') type: string | undefined;
+  @Input('type') type: string = '';
   @ViewChild('input') input: ElementRef | any;
   @Output('blurForRer') blurForRed = new EventEmitter();
-  @Input('value') value: string | undefined;
-  @Input('autocomplete') autocomplete: string | undefined;
+  @Input('value') value: string = '';
+  @Input('autocomplete') autocomplete: string = '';
   @Input('togglePasswordVisibility') togglePasswordVisibility: boolean = false;
   @Input('switchIcon') switchIcon: boolean = false;
   @Input('class') class!: string;
   @Input('passwordIcon') passwordIcon!: string;
-  @Input('passwordIconHide') passwordIconHide!: string;
+  @Input('toggleDatePicker') toggleDatePicker: boolean = false;
+
+//   @Input('passwordIconHide') passwordIconHide!: string;
 
 
   constructor() {}
@@ -52,6 +55,10 @@ export class InputComponent implements OnInit, AfterViewInit {
     } else {
       this.type = 'password';
     }
+  }
+
+  onClickCalendar(e: any) {
+    this.calendarClick.emit(e)
   }
 
   blurInput() {

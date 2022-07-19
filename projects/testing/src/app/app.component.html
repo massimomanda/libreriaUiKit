@@ -1,7 +1,12 @@
 <!-- <lib-close-button [class]="'dark'"></lib-close-button> -->
 
 <div id="button">
-    <lib-button (click)="onClick()" [textButton]="'Token'" [class]="'primary'" [disabled]="false"></lib-button>
+  <lib-button
+    (click)="onClick()"
+    [textButton]="'Token'"
+    [class]="'primary'"
+    [disabled]="false"
+  ></lib-button>
 </div>
 
 <div class="input" [formGroup]="formAutocomplete">
@@ -20,7 +25,7 @@
     [minCharactersToStartSearch]="3"
     (onInput)="searchSubscription($event)"
     #input
-    >
+  >
     <!-- <div
       class="result"
       [class.selected]="selectedOption % searchResult.length === i"
@@ -33,19 +38,11 @@
     <div class="no-result" *ngIf="messaggio">
       {{ messaggio }}
     </div> -->
-
-    
-    
   </lib-autocomplete>
 </div>
 
-
 <!-- <button (click)="onClick()">T O K E N</button> -->
 <!-- <lib-button (click)="onClick()"></lib-button> -->
-
-
-
-
 
 <!-- <div class="input">
   <lib-input
@@ -99,12 +96,22 @@
 <!-- <lib-input [placeholder]="'ciao'"></lib-input> -->
 <!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
 <div id="button"> -->
-  <div class="input">
-    <lib-input
-      class="primary"
-      [type]="'password'"
-      [placeholder]="'inserisci password'"
-      [togglePasswordVisibility]="true"
-      [height]="'40px'"
-    ></lib-input>
-  </div>
+<div class="input">
+  <!-- <lib-input
+    class="primary"
+    [type]="'text'"
+    [placeholder]="'inserisci password'"
+    [toggleDatePicker]="true"
+    (calendarClick)="openDatePicker()"
+  ></lib-input>
+
+  <lib-input
+    class="primary"
+    [type]="'password'"
+    [placeholder]="'inserisci password'"
+    (calendarClick)="openDatePicker()"
+    [togglePasswordVisibility]="true"
+  ></lib-input> -->
+  <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
+</div>
+

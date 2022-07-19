@@ -2,7 +2,7 @@ import {  HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ComponentsModule } from 'uiKit';
+import { ComponentsModule } from 'projects/ui-kit/src/public-api';
 
 
 
@@ -16,9 +16,9 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ComponentsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
