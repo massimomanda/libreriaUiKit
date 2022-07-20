@@ -1,17 +1,38 @@
-
-<div [formGroup]="parentFormGroup" class="select-wrapper" #selectWrapper tabindex="0" (focusout)="onFocusout()" (keydown)="onKeydown($event)">
-    <label [for]="for">{{ label }}{{flag}}-{{isVisible}} </label>
-    <div  *ngIf="isVisible && !flag" class="options-down-wrapper">
-        <div *ngFor="let o of options; let i = index" class="option" (click)="onSelect(i)" [class.selected]="keyboardOption % options.length === i">
-            {{ o }}
-        </div>
+<div
+    [class.flagged]="flag"
+  [formGroup]="parentFormGroup"
+  class="select-wrapper"
+  #selectWrapper
+  tabindex="0"
+  (focusout)="onFocusout()"
+  (keydown)="onKeydown($event)"
+>
+  <label [for]="for">{{ label }}</label>
+  <div *ngIf="true || isVisible && !flag" class="options-down-wrapper">
+    <div
+      *ngFor="let o of options; let i = index"
+      class="option" 
+      (click)="onSelect(i)"
+      [class.selected]="keyboardOption % options.length === i"
+    >
+      {{ o }}
     </div>
-    <div (click)="optionsToggle($event)" class="select" [formControlName]="controlName" >
-        {{ currentOption }}
+  </div>
+  <div
+    (click)="optionsToggle($event)"
+    class="select"
+    [formControlName]="controlName"
+  >
+    {{ currentOption }}
+  </div>
+  <div *ngIf="isVisible && flag" class="options-down-wrapper">
+    <div
+      *ngFor="let o of options; let i = index"
+      class="option" 
+      (click)="onSelect(i)"
+      [class.selected]="keyboardOption % options.length === i"
+    >
+      {{ o }}
     </div>
-    <div *ngIf="true || isVisible && flag" class="options-down-wrapper">
-        <div *ngFor="let o of options; let i = index" class="option" (click)="onSelect(i)" [class.selected]="keyboardOption % options.length === i">
-            {{ o }}
-        </div>
-    </div>
+  </div>
 </div>

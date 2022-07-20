@@ -43,6 +43,7 @@ export class SelectComponent implements OnInit {
 
   currentOption: string = '';
   keyboardOption: number = -1;
+  top!: number;
 
   constructor() {}
 
@@ -59,6 +60,7 @@ export class SelectComponent implements OnInit {
     this.isVisible = !this.isVisible;
     // this.selectWrapper.nativeElement.style.border = '1px solid #97a4bb';
 
+   
     let altezzaFinestra =
       this.options.length * e.target.getBoundingClientRect().height +
       e.target.getBoundingClientRect().height;
@@ -66,12 +68,19 @@ export class SelectComponent implements OnInit {
       altezzaFinestra + e.target.getBoundingClientRect().y >
       window.innerHeight
     ) {
-      console.log('esci sopra')
+      this.top =
+        -1 * this.options.length * e.target.getBoundingClientRect().height;
+      console.log(this.top);
+
+      console.log('esci sopra');
       this.flag = false;
 
+      
       // e.target.getBoundingClientRect()
     } else {
-      console.log('esci sotto');      
+      this.top = e.target.getBoundingClientRect().height;
+      console.log(this.top);
+      console.log('esci sotto');
       this.flag = true;
 
       console.log(e.target.getBoundingClientRect().y);
@@ -79,7 +88,15 @@ export class SelectComponent implements OnInit {
     // e.target.getBoundingClientRect() punto dove si trova la input
     // window.innerHeight(altezza pagina)
     // this.options.length*43(altezza option) + 43 (altezza input)
+    
+    let options = document.getElementsByClassName('options-down-wrapper')
+  
+    if(options && options[0]) {
+        let opt: any = options[0]
+        opt.style.top = this.top + 'px';
+    }
   }
+
 
   onKeydown(e: any) {
     switch (e.key) {
