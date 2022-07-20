@@ -12,6 +12,7 @@
 <div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"
+    [textLabel]="'ciao'"
     [placeholder]="'Inizia ricerca...'"
     [parentFormGroup]="formAutocomplete"
     [controlName]="'autocomplete'"
