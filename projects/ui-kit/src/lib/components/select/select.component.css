@@ -8,6 +8,8 @@
   line-height: 22px;
 }
 
+
+
 .select-wrapper {
   width: 100%;
   height: inherit;
@@ -16,7 +18,7 @@
   outline: none;
   border: 1px solid #c6d1e4;
   background-color: white;
-  position: absolute;
+  position: relative;
   z-index: 4;
 }
 
@@ -32,6 +34,7 @@
 }
 
 .option {
+    
     padding: 0.6rem 1rem;
 }
 
