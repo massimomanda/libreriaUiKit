@@ -69,7 +69,9 @@ export class AutocompleteComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+
+  }
 
   ngAfterViewInit(): void {
     fromEvent(this.input?.nativeElement, 'input')

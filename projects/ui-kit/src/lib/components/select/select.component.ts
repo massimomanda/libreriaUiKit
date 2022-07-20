@@ -18,6 +18,7 @@ import { FormGroup } from '@angular/forms';
 })
 export class SelectComponent implements OnInit {
   @HostBinding('attr.tabindex') tabindex = '0';
+  flag!: boolean;
   @HostListener('focusout', ['$event.target']) onFocusout() {
     this.selectWrapper.nativeElement.style.border = '1px solid #c6d1e4';
     this.isVisible = false;
@@ -36,6 +37,10 @@ export class SelectComponent implements OnInit {
     new EventEmitter();
 
   isVisible: boolean = false;
+
+  isUp: boolean = false;
+  isDown: boolean = false;
+
   currentOption: string = '';
   keyboardOption: number = -1;
 
@@ -50,9 +55,30 @@ export class SelectComponent implements OnInit {
     this.selectWrapper.nativeElement.style.border = '1px solid #c6d1e4';
   }
 
-  optionsToggle() {
+  optionsToggle(e?: any) {
     this.isVisible = !this.isVisible;
-    this.selectWrapper.nativeElement.style.border = '1px solid #97a4bb';
+    // this.selectWrapper.nativeElement.style.border = '1px solid #97a4bb';
+
+    let altezzaFinestra =
+      this.options.length * e.target.getBoundingClientRect().height +
+      e.target.getBoundingClientRect().height;
+    if (
+      altezzaFinestra + e.target.getBoundingClientRect().y >
+      window.innerHeight
+    ) {
+      console.log('esci sopra')
+      this.flag = false;
+
+      // e.target.getBoundingClientRect()
+    } else {
+      console.log('esci sotto');      
+      this.flag = true;
+
+      console.log(e.target.getBoundingClientRect().y);
+    }
+    // e.target.getBoundingClientRect() punto dove si trova la input
+    // window.innerHeight(altezza pagina)
+    // this.options.length*43(altezza option) + 43 (altezza input)
   }
 
   onKeydown(e: any) {
@@ -81,9 +107,10 @@ export class SelectComponent implements OnInit {
       }
       case 'Enter': {
         this.currentOption = this.options[this.keyboardOption];
-        this.optionsToggle();
+        this.isVisible = !this.isVisible;
+        this.selectWrapper.nativeElement.style.border = '1px solid #97a4bb';
         this.selectedOption.emit(this.currentOption);
-        
+
         break;
       }
       default:

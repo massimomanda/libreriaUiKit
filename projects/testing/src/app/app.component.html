@@ -98,7 +98,7 @@
 <!-- <lib-input [placeholder]="'ciao'"></lib-input> -->
 <!-- <lib-welcome [name]="'Mario Rossi'"></lib-welcome>
 <div id="button"> -->
-<div class="input">
+
   <!-- <lib-input
     class="primary"
     [type]="'text'"
@@ -115,7 +115,11 @@
     [togglePasswordVisibility]="true"
   ></lib-input> -->
   <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
-</div>
+
+  <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
+
+  <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
+
 
 <!-- <div class="input" [formGroup]="formAutocomplete">
     <lib-autocomplete

@@ -11,6 +11,14 @@
   margin: 0 auto;
   padding-bottom: 4rem;
 }
+lib-select:last-of-type{
+  position: absolute;
+  margin: 0 auto;
+  bottom: 100px;
+  width: 80%;
+  
+}
+
 /* .selection-wrapper {
     position: absolute; 
     background: white;
