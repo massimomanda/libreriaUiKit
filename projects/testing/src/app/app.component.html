@@ -25,6 +25,7 @@
     [debounceValue]="500"
     [minCharactersToStartSearch]="3"
     (onInput)="searchSubscription($event)"
+    [textLabel]="'ciaone'"
     #input
   >
     <!-- <div
@@ -115,4 +116,25 @@
   ></lib-input> -->
   <lib-select (selectedOption)="onReceivedOption($event)" [options]="opzioniFiltrate"></lib-select>
 </div>
+
+<!-- <div class="input" [formGroup]="formAutocomplete">
+    <lib-autocomplete
+      (clear)="clearInput()"
+      [placeholder]="'Inizia ricerca...'"
+      [parentFormGroup]="formAutocomplete"
+      [controlName]="'autocomplete'"
+      [name]="'autocomplete'"
+      [for]="'autocomplete'"
+      [class]="'primary'"
+      [searchResult]="searchResult"
+      [isSearching]="isSearching"
+      [noResult]="noResult ? true : false"
+      [debounceValue]="500"
+      [minCharactersToStartSearch]="3"
+      (onInput)="searchSubscription($event)"
+      [textLabel]="'ciaone'"
+      #input
+    >
+    </lib-autocomplete>
+  </div> -->
 

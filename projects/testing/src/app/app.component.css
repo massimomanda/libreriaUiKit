@@ -9,6 +9,7 @@
   min-height: 50px;
   position: relative;
   margin: 0 auto;
+  padding-bottom: 4rem;
 }
 /* .selection-wrapper {
     position: absolute; 
@@ -41,10 +42,6 @@
   background: rgba(218, 218, 218, 0.521);
   cursor: default;
 } */
-
-lib-autocomplete {
-  position: relative;
-}
 
 .round-button-wrapper {
   height: 50px;
