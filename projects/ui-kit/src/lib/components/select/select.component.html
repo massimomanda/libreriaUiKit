@@ -1,5 +1,5 @@
 <div
-    [class.flagged]="flag"
+  [class.flagged]="flag"
   [formGroup]="parentFormGroup"
   class="select-wrapper"
   #selectWrapper
@@ -8,10 +8,14 @@
   (keydown)="onKeydown($event)"
 >
   <label [for]="for">{{ label }}</label>
-  <div *ngIf="true || isVisible && !flag" class="options-down-wrapper">
+  <div
+    [ngStyle]="isVisible ? {'top': flag ? top - 6 + 'px' : top + 14 + 'px'} : {'visibility': 'hidden'}"
+    class="options-down-wrapper"
+    #optionsContainer
+  >
     <div
       *ngFor="let o of options; let i = index"
-      class="option" 
+      class="option"
       (click)="onSelect(i)"
       [class.selected]="keyboardOption % options.length === i"
     >
@@ -24,15 +28,5 @@
     [formControlName]="controlName"
   >
     {{ currentOption }}
-  </div>
-  <div *ngIf="isVisible && flag" class="options-down-wrapper">
-    <div
-      *ngFor="let o of options; let i = index"
-      class="option" 
-      (click)="onSelect(i)"
-      [class.selected]="keyboardOption % options.length === i"
-    >
-      {{ o }}
-    </div>
   </div>
 </div>
