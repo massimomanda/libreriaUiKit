@@ -8,7 +8,6 @@
   (keydown)="onKeydown($event)"
 >
   <label [for]="for">{{ label }}</label>
-  <div></div>
   <div
     [ngStyle]="isVisible ? {'top': flag ? top - 6 + 'px' : top + 14 + 'px'} : {'visibility': 'hidden'}"
     class="options-down-wrapper"
@@ -30,14 +29,4 @@
   >
     {{ currentOption }}
   </div>
-  <!-- <div *ngIf="isVisible && flag" class="options-down-wrapper" #optionsContainer>
-    <div
-      *ngFor="let o of options; let i = index"
-      class="option"
-      (click)="onSelect(i)"
-      [class.selected]="keyboardOption % options.length === i"
-    >
-      {{ o }}
-    </div>
-  </div> -->
 </div>
