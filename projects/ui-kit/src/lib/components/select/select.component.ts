@@ -1,4 +1,5 @@
 import {
+    AfterViewInit,
   Component,
   ElementRef,
   EventEmitter,
@@ -16,7 +17,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
 })
-export class SelectComponent implements OnInit {
+export class SelectComponent implements OnInit, AfterViewInit {
   @HostBinding('attr.tabindex') tabindex = '0';
   flag!: boolean;
   @HostListener('focusout', ['$event.target']) onFocusout() {
@@ -32,6 +33,8 @@ export class SelectComponent implements OnInit {
   @Input('options') options: any = [];
 
   @ViewChild('selectWrapper') selectWrapper: ElementRef | any;
+  @ViewChild('optionsContainer') optionsContainer: ElementRef | any;
+
 
   @Output('selectedOption') selectedOption: EventEmitter<any> =
     new EventEmitter();
@@ -48,6 +51,18 @@ export class SelectComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    // console.log(this.optionsContainer)
+    // this.optionsContainer.nativeElement.classList.add('ciao')
+    // if(this.optionsContainer.nativeElement.classList.contains('ciao') ) {
+    //     this.optionsContainer.nativeElement.style.top = this.top;
+    // }
+
+
+    
+
+  }
 
   onSelect(index: any) {
     this.currentOption = this.options[index];
@@ -89,12 +104,13 @@ export class SelectComponent implements OnInit {
     // window.innerHeight(altezza pagina)
     // this.options.length*43(altezza option) + 43 (altezza input)
     
-    let options = document.getElementsByClassName('options-down-wrapper')
+    // let options = document.getElementsByClassName('options-down-wrapper')
   
-    if(options && options[0]) {
-        let opt: any = options[0]
-        opt.style.top = this.top + 'px';
-    }
+    // if(options && options[0]) {
+    //     let opt: any = options[0]
+    //     opt.style.top = this.top + 'px';
+    // }
+    
   }
 
 
