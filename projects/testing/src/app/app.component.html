@@ -13,7 +13,11 @@
   [options]="opzioniFiltrate"
   
 ></lib-select>
-
+<lib-select
+  (selectedOption)="onReceivedOption($event)"
+  [options]="opzioniFiltrate2"
+  
+></lib-select>
 <div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"

@@ -41,22 +41,28 @@ export class AppComponent implements OnInit {
   opzioniProva = [
     {
       nome: 'Ilaria',
+      cognome:'ciao'
     },
     {
       nome: 'Luigi',
+      cognome:'ciao1'
     },
     {
       nome: 'Costa',
+      cognome:'ciao2'
     },
     {
       nome: 'Antonio',
+      cognome:'ciao3'
     },
     {
         nome: 'Massimo',
+        cognome:'ciao4'
       },
   ];
 
   opzioniFiltrate: any = []
+  opzioniFiltrate2: any = []
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -81,6 +87,9 @@ export class AppComponent implements OnInit {
     this.opzioniProva.forEach((e:any) => {
         this.opzioniFiltrate.push(e.nome)
     })
+    this.opzioniProva.forEach((e:any) => {
+      this.opzioniFiltrate2.push(e.cognome)
+  })
 
     this.formAutocomplete = this._fb.group({
       autocomplete: [''],
