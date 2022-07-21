@@ -1,43 +1,16 @@
-<div
-  [class.flagged]="flag"
-  [formGroup]="parentFormGroup"
-  class="select-wrapper"
-  #selectWrapper
-  tabindex="0"
-  (focusout)="onFocusout()"
-  (keydown)="onKeydown($event)"
->
-  <label [for]="for">{{ label }}</label>
-  <div></div>
-  <div
-    [ngStyle]="isVisible ? {'top': flag ? top - 6 + 'px' : top + 14 + 'px'} : {'visibility': 'hidden'}"
-    class="options-down-wrapper"
-    #optionsContainer
-  >
-    <div
-      *ngFor="let o of options; let i = index"
-      class="option"
-      (click)="onSelect(i)"
-      [class.selected]="keyboardOption % options.length === i"
-    >
-      {{ o }}
+<div [class.flagged]="flag" [formGroup]="parentFormGroup" class="select-wrapper" #selectWrapper tabindex="0"
+    (focusout)="onFocusout()" (keydown)="onKeydown($event)">
+    <label [for]="for">{{ label }}</label>
+
+    <div [ngStyle]="isVisible ? {'top': flag ? top - 6 + 'px' : top + 14 + 'px'} : {'visibility': 'hidden'}"
+        class="options-down-wrapper" #optionsContainer>
+        <div *ngFor="let o of options; let i = index" class="option" (click)="onSelect(i)"
+            [class.selected]="keyboardOption % options.length === i">
+            {{ o }}
+        </div>
     </div>
-  </div>
-  <div
-    (click)="optionsToggle($event)"
-    class="select"
-    [formControlName]="controlName"
-  >
-    {{ currentOption }}
-  </div>
-  <!-- <div *ngIf="isVisible && flag" class="options-down-wrapper" #optionsContainer>
-    <div
-      *ngFor="let o of options; let i = index"
-      class="option"
-      (click)="onSelect(i)"
-      [class.selected]="keyboardOption % options.length === i"
-    >
-      {{ o }}
+    <div (click)="optionsToggle($event)" class="select" [formControlName]="controlName">
+        {{ currentOption }}
     </div>
-  </div> -->
+
 </div>

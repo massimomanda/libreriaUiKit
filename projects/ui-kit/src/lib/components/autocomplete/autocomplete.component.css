@@ -11,7 +11,7 @@
 .autocomplete-wrapper {
     position: absolute;
     background: white;
-    z-index: 3;
+    /* z-index: 3; */
     width: 100%;
 }
 
@@ -53,14 +53,6 @@ input:focus-visible {
   height: inherit;
 }
 
-input.ng-invalid.ng-touched {
-  border: 1px solid #eb5757;
-}
-
-#hide-wrapper,
-#show-wrapper {
-  position: relative;
-}
 
 .icon-container {
   position: absolute;
@@ -71,9 +63,7 @@ input.ng-invalid.ng-touched {
   height: auto;
 }
 
-.icon-container svg {
-  cursor: pointer;
-}
+
 
 .primary {
   fill: #003594;
@@ -95,15 +85,6 @@ input.ng-invalid.ng-touched {
   stroke: black !important ;
 }
 
-.hide-password {
-  top: -4px;
-  position: absolute;
-}
-
-.show-password {
-  bottom: -17px;
-  position: absolute;
-}
 
 .wrapper {
   display: flex;

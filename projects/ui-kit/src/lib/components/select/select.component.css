@@ -17,7 +17,7 @@
   border: 1px solid #c6d1e4;
   background-color: white;
   position: relative;
-  z-index: 4;
+  /* z-index: 4; */
 }
 
 .select {
@@ -25,6 +25,7 @@
   display: flex;
   align-items: center;
   padding: 0.6rem 1rem;
+  
 }
 
 .options-down-wrapper {
@@ -32,7 +33,7 @@
   z-index: 500;
   width: 100%;
   border: 1px solid #c6d1e4;
-  background: white;
+  background-color: white;
   left: -1px;
 }
 
