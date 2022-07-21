@@ -20,10 +20,6 @@
   z-index: 4;
 }
 
-.select-wrapper:focus-within {
-  border: 1px solid #97a4bb;
-}
-
 .select {
   height: 24px;
   display: flex;
