@@ -11,6 +11,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+interface Option{
+  text: any,
+  value: any
+}
 
 @Component({
   selector: 'lib-select',
@@ -18,6 +22,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./select.component.css'],
 })
 export class SelectComponent implements OnInit, AfterViewInit {
+
   @HostBinding('attr.tabindex') tabindex = '0';
   flag!: boolean;
   @HostListener('focusout', ['$event.target']) onFocusout() {
@@ -30,6 +35,7 @@ export class SelectComponent implements OnInit, AfterViewInit {
   @Input('controlName') controlName: string = '';
   @Input('parentFormGroup') parentFormGroup: FormGroup = {} as FormGroup;
 
+  @Input('optionSchema') optionSchema:Option = {text:'',value:''};
   @Input('options') options: any = [];
 
   @ViewChild('selectWrapper') selectWrapper: ElementRef | any;
@@ -64,10 +70,10 @@ export class SelectComponent implements OnInit, AfterViewInit {
 
   }
 
-  onSelect(index: any) {
-    this.currentOption = this.options[index];
+  onSelect(val:any) {
+    this.currentOption = val[this.optionSchema.text];
     this.isVisible = !this.isVisible;
-    this.selectedOption.emit(this.currentOption);
+    this.selectedOption.emit(val);
     this.selectWrapper.nativeElement.style.border = '1px solid #c6d1e4';
   }
 

@@ -4,9 +4,9 @@
 
     <div [ngStyle]="isVisible ? {'top': flag ? top - 6 + 'px' : top + 14 + 'px'} : {'visibility': 'hidden'}"
         class="options-down-wrapper" #optionsContainer>
-        <div *ngFor="let o of options; let i = index" class="option" (click)="onSelect(i)"
+        <div *ngFor="let o of options; let i = index" class="option" (click)="onSelect(o)"
             [class.selected]="keyboardOption % options.length === i">
-            {{ o }}
+            {{ o[optionSchema.text] }}
         </div>
     </div>
     <div (click)="optionsToggle($event)" class="select" [formControlName]="controlName">
