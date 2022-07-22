@@ -8,10 +8,22 @@
     [disabled]="false"
   ></lib-button>
 </div>
-
+<lib-select
+  (selectedOption)="onReceivedOption($event)"
+  [options]="opzioniProva"
+  [optionSchema]="optionSchema"
+  
+></lib-select>
+<lib-select
+  (selectedOption)="onReceivedOption($event)"
+  [options]="opzioniProva"
+  [optionSchema]="optionSchema1"
+  
+></lib-select>
 <div class="input" [formGroup]="formAutocomplete">
   <lib-autocomplete
     (clear)="clearInput()"
+
     [placeholder]="'Inizia ricerca...'"
     [parentFormGroup]="formAutocomplete"
     [controlName]="'autocomplete'"
@@ -117,36 +129,12 @@
   (selectedOption)="onReceivedOption($event)"
   [options]="opzioniFiltrate"
 ></lib-select> -->
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
+
 
 <h1>CIAONE MASSIMO BUONANOTTE</h1>
 
-<lib-select
-  (selectedOption)="onReceivedOption($event)"
-  [options]="opzioniFiltrate"
-></lib-select>
 
+<h1>CIAONE MASSIMO BUONANOTTE</h1>
 
 <!-- <div class="input" [formGroup]="formAutocomplete">
     <lib-autocomplete

@@ -40,23 +40,42 @@ export class AppComponent implements OnInit {
 
   opzioniProva = [
     {
+      id: 1,
       nome: 'Ilaria',
+      cognome: 'ciao'
     },
     {
+      id: 2,
       nome: 'Luigi',
+      cognome: 'ciao1'
     },
     {
+      id: 3,
       nome: 'Costa',
+      cognome: 'ciao2'
     },
     {
+      id: 4,
       nome: 'Antonio',
+      cognome: 'ciao3'
     },
     {
-        nome: 'Massimo',
-      },
+      id: 5,
+      nome: 'Massimo',
+      cognome: 'ciao4'
+    },
   ];
+  optionSchema = {
+    text : 'nome',
+    value: 'id'
+  }
+  optionSchema1 = {
+    text : 'cognome',
+    value: 'id'
+  }
 
   opzioniFiltrate: any = []
+  opzioniFiltrate2: any = []
 
   // pluto: Subject<any> = new Subject()
   // pippo = new Observable(subscriber => {
@@ -74,12 +93,16 @@ export class AppComponent implements OnInit {
     private http: HttpClient,
     private tokenService: TokenService,
     private searchService: SearchService
-  ) {}
+  ) { }
 
   ngOnInit() {
 
-    this.opzioniProva.forEach((e:any) => {
-        this.opzioniFiltrate.push(e.nome)
+
+    this.opzioniProva.forEach((e: any) => {
+      this.opzioniFiltrate.push(e.nome)
+    })
+    this.opzioniProva.forEach((e: any) => {
+      this.opzioniFiltrate2.push(e.cognome)
     })
 
     this.formAutocomplete = this._fb.group({
