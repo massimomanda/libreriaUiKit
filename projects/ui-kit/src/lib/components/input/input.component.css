@@ -10,7 +10,6 @@
 
 #input-wrapper {
   position: relative;
-  /* width: 100%; */
   height: inherit;
   border-radius: 10px;
   color: black;
@@ -57,9 +56,6 @@ input::placeholder {
   height: inherit;
 }
 
-input.ng-invalid.ng-touched {
-  border: 1px solid #eb5757;
-}
 
 #hide-wrapper,
 #show-wrapper {
@@ -67,14 +63,11 @@ input.ng-invalid.ng-touched {
 }
 
 .icon-container {
-  /* position: absolute;
-  left: 98%;
-  bottom: 50%; */
+
   z-index: 10;
   display: flex;
   align-items: center;
-  /* width: auto;
-  height: auto; */
+
 }
 
 .icon-container .calendar {
